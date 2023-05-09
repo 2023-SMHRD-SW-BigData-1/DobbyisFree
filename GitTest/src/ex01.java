@@ -5,6 +5,7 @@ public class ex01 {
 
 		System.out.println("팀장 첫번째 커밋!");
 		System.out.println("팀원1 두번째 커밋");
+		System.out.println("팀원2 3번째 커밋?");
 
 	}
 
