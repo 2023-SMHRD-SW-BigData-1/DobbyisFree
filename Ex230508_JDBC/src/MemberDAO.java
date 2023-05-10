@@ -251,6 +251,7 @@ public class MemberDAO {
 			psmt.setString(1, id);
 			rs = psmt.executeQuery();
 			
+			
 			while(rs.next()) {
 				String id_1 = rs.getString(1);
 				String pw_1 = rs.getString(2);
