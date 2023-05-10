@@ -7,33 +7,22 @@ import PokemonController.ActCon;
 
 
 public class Main {
-
+	
 	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
 		// 출력문 입력 부탁드립니다.
 		ActCon SM = new ActCon();
 		SM.Start();
 
 		
 		//오박사 등장
-		System.out.println("그동안 고생많았다 이제 근본중에 근본인 그 녀석만 남았구나! 그간 함께했던 수많은 에이스포켓몬중에서 3마리를 엄선했단다.");
-		
-		System.out.println("아무리 그래도 한놈잡는데 다구리치는건 추잡하지 않니? 마지막으로 너와 함께할 포켓몬을 딱 1마리만 골라보렴");
+		SM.Doctorate();
 		
 		//회원가입 및 포켓몬 선택 
-		Scanner sc = new Scanner(System.in);
-		System.out.print("ID 입력 : ");
-		String ID = sc.next();
-		System.out.print("PW 입력 : ");
-		String PW = sc.next();
-		
-		System.out.print("함께할 Pokemon 선택 : ");
-		String Pokemon = sc.next();
+		SM.New();
 		
 		//로그인
-		System.out.print("ID 입력 : ");
-		ID = sc.next();
-		System.out.print("PW 입력 : ");
-		PW = sc.next();
+		SM.login();
 		
 		
 		
