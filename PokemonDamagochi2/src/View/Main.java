@@ -14,7 +14,7 @@ public class Main {
 		ActCon SM = new ActCon();
 		SM.Start();
 
-		
+		 
 		//오박사 등장
 		SM.Doctorate();
 		
