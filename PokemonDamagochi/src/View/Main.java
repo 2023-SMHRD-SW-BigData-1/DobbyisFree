@@ -3,7 +3,7 @@ package View;
 public class Main {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		// 출력문 입력 부탁드립니다.
 
 	}
 
