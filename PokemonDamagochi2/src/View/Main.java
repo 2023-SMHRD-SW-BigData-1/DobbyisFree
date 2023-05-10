@@ -2,13 +2,17 @@ package View;
 
 import java.util.Scanner;
 
+import PokemonController.ActCon;
+
+
+
 public class Main {
 
 	public static void main(String[] args) {
 		// 출력문 입력 부탁드립니다.
-System.out.println("포켓몬마스터가 되기 위해 모험을 떠난 '너!'와 친구들, 긴 여정을 마치고 환상의 포켓몬과의 최종결전을 앞두고 있다.");
-		
-		System.out.println("결전에 앞서 혹독하고 처절한 트레이닝을 계획하는데...");
+		ActCon SM = new ActCon();
+		SM.Start();
+
 		
 		//오박사 등장
 		System.out.println("그동안 고생많았다 이제 근본중에 근본인 그 녀석만 남았구나! 그간 함께했던 수많은 에이스포켓몬중에서 3마리를 엄선했단다.");
