@@ -25,8 +25,8 @@ public class PokemonDAO {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			String url = "jdbc:oracle:thin:@172.30.1.40:1521:xe";
-			String db_id = "service";
-			String db_pw = "12345";
+			String db_id = "POKEDB";
+			String db_pw = "123456";
 			conn = DriverManager.getConnection(url, db_id, db_pw);
 
 		} catch (ClassNotFoundException e) {
@@ -141,7 +141,7 @@ public class PokemonDAO {
 
 		} catch (SQLException e) {
 
-			pcon.main();
+	
 			e.printStackTrace();
 		} finally {
 			getClose();
@@ -160,15 +160,14 @@ public class PokemonDAO {
 	public void insertDup(String T_ID) {
 		getConn();
 
-		String sql = "INSERT INTO 트레이너 (T_ID, T_PW, PCODE) VALUES (?, ?, ?)";
+		String sql = "INSERT INTO 트레이너 (T_ID) VALUES (?)";
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, T_ID);
 			psmt.executeUpdate();
 
 		} catch (SQLException e) {
-			System.out.println("중복된 이름입니다. 메인화면으로 이동합니다.");
-			pcon.main();
+			
 
 			e.printStackTrace();
 		} finally {
@@ -199,7 +198,7 @@ public class PokemonDAO {
 
 		} catch (SQLException e) {
 
-			pcon.main();
+			
 			e.printStackTrace();
 		} finally {
 			getClose();
@@ -243,9 +242,8 @@ public class PokemonDAO {
 			psmt.executeUpdate();
 
 		} catch (SQLException e) {
-			System.out.println("중복된 이름입니다. 메인화면으로 이동합니다.");
-			pcon.main();
-
+			
+			
 			e.printStackTrace();
 		} finally {
 			getClose();
