@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import PokemonController.ActCon;
 import PokemonDTO.PokemonDTO;
@@ -13,18 +14,17 @@ public class PokemonDAO {
 	private Connection conn;
 	private PreparedStatement psmt;
 	private ResultSet rs;
-	
+
 	PokemonDTO pdto = new PokemonDTO(100, 0, 0, 0);
-	
+
 	static PokemonController.ActCon pcon = new PokemonController.ActCon();
 
 	// 문열기
 	public void getConn() {
 
-		
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
-			String url = "jdbc:oracle:thin:@127.0.0.1:1521:xe";
+			String url = "jdbc:oracle:thin:@172.30.1.40:1521:xe";
 			String db_id = "service";
 			String db_pw = "12345";
 			conn = DriverManager.getConnection(url, db_id, db_pw);
@@ -35,68 +35,184 @@ public class PokemonDAO {
 			e.printStackTrace();
 		}
 	}
-	
-	
-	
-	
-	
+
 	// UPDATE 행동선택때마다 감소하거나 증가하는 능력치 수정해주는 메소드
+
 	// 채찍질 hp - 30 / atk + 5 / exp +2
+	public void Whip(String id) {
+		
+		getConn();
+		pdto = null;
+		String sql = "UPDATE 포켓몬 SET HP = HP-30, ATK = ATK +5, EXP = EXP+2 WHERE T_ID = ?";
+
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, id);
+			psmt.executeUpdate();
+
+		}
+
+		catch (SQLException e) {
+
+			e.printStackTrace();
+		} finally {
+			getClose();
+		}
+
+	}
 	
 	// 놀아주기 hp - 30 / love +5 / exp +2
+	public void Play(String id) {
+		
+		getConn();
+		pdto = null;
+		String sql = "UPDATE 포켓몬 SET HP = HP-30, LOVE = LOVE +5, EXP = EXP+2 WHERE T_ID = ?";
+
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, id);
+			psmt.executeUpdate();
+
+		}
+
+		catch (SQLException e) {
+
+			e.printStackTrace();
+		} finally {
+			getClose();
+		}
+
+	}
+
 	
 	// 잠자기 hp100 / exp +2
+	public void Sleep(String id) {
 	
-	
-	
-	// 로그인 정보 체크하는 메소드 (select)
-	// 포켓몬 상태창에 불러올 수 있다면 메소드 중복해서 활용하자 
-	int con = 0;
-	public PokemonDTO login(String T_ID , int T_PW) {
 		getConn();
-		
-		
+		pdto = null;
+		String sql = "UPDATE 포켓몬 SET HP = 100, EXP = EXP+2 WHERE T_ID = ?";
+
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, id);
+			psmt.executeUpdate();
+
+		}
+
+		catch (SQLException e) {
+
+			e.printStackTrace();
+		} finally {
+			getClose();
+		}
+
+	}
+
+	
+
+	
+
+	// 포켓몬 상태 메소드
+
+	public ArrayList<PokemonDTO> state(String T_ID) {
+		getConn();
+
+		String sql = "SELECT T_ID , HP , ATK , LOVE, EXP ,PNAME FROM 포켓몬 WHERE T_ID = ? ";
+		PokemonDTO t_pdto = null;
+		ArrayList<PokemonDTO> t_pdtoList = new ArrayList<>();
+
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, T_ID);
+
+			rs = psmt.executeQuery();
+
+			if (rs.next()) {
+				String T_id = rs.getString(1);
+				int hp = rs.getInt(2);
+				int atk = rs.getInt(3);
+				int love = rs.getInt(4);
+				int exp = rs.getInt(5);
+				String pname = rs.getString(6);
+
+				t_pdto = new PokemonDTO(T_id, hp, atk, love, exp, pname);
+				t_pdtoList.add(t_pdto);
+			}
+
+		} catch (SQLException e) {
+
+			pcon.main();
+			e.printStackTrace();
+		} finally {
+			getClose();
+		}
+		return t_pdtoList;
+
+	}
+
+	// 로그인 정보 체크하는 메소드 (select)
+	// 포켓몬 상태창에 불러올 수 있다면 메소드 중복해서 활용하자
+	
+	
+	
+	
+	// 회원가입 할때 ID 중복체크
+	public void insertDup(String T_ID) {
+		getConn();
+
+		String sql = "INSERT INTO 트레이너 (T_ID, T_PW, PCODE) VALUES (?, ?, ?)";
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, T_ID);
+			psmt.executeUpdate();
+
+		} catch (SQLException e) {
+			System.out.println("중복된 이름입니다. 메인화면으로 이동합니다.");
+			pcon.main();
+
+			e.printStackTrace();
+		} finally {
+			getClose();
+
+		}
+
+	}
+
+	public PokemonDTO login(String T_ID, int T_PW) {
+		getConn();
+
 		String sql = "SELECT T_ID , T_PW FROM 트레이너 WHERE T_ID = ? AND T_PW = ?";
 		PokemonDTO t_pdto = null;
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, T_ID);
 			psmt.setInt(2, T_PW);
-			
+
 			rs = psmt.executeQuery();
-			
-			if(rs.next()) {
+
+			if (rs.next()) {
 				String T_id = rs.getString(1);
 				int T_pw = rs.getInt(2);
-			
-				t_pdto = new PokemonDTO(T_id,T_pw);
+
+				t_pdto = new PokemonDTO(T_id, T_pw);
 			}
-			
-			
-			
+
 		} catch (SQLException e) {
-			
+
 			pcon.main();
 			e.printStackTrace();
-		}finally {
+		} finally {
 			getClose();
 		}
 		return t_pdto;
-		
-		
-		
+
 	}
 
-	
-	
-	
-	
-	
 	// 회원가입 메소드
 
-	public void insertTrainer(String T_ID , int T_PW , int PCODE) {
+	public void insertTrainer(String T_ID, int T_PW, int PCODE) {
 		getConn();
-		
+
 		String sql = "INSERT INTO 트레이너 (T_ID, T_PW, PCODE) VALUES (?, ?, ?)";
 		try {
 			psmt = conn.prepareStatement(sql);
@@ -113,18 +229,17 @@ public class PokemonDAO {
 			psmt.setInt(4, pdto.getATK()); // 초기값: 0
 			psmt.setInt(5, pdto.getLOVE()); // 초기값: 0
 			psmt.setInt(6, pdto.getEXP()); // 초기값: 0
-			if(PCODE == 1) {
-				psmt.setString(7,"피카츄"); 
-				
-			}else if (PCODE == 2) {
-				psmt.setString(7,"이브이"); 
-				
-			}else if (PCODE == 3) {
-				psmt.setString(7,"치코리타"); 
-				
+			if (PCODE == 1) {
+				psmt.setString(7, "피카츄");
+
+			} else if (PCODE == 2) {
+				psmt.setString(7, "이브이");
+
+			} else if (PCODE == 3) {
+				psmt.setString(7, "치코리타");
+
 			}
-			
-			
+
 			psmt.executeUpdate();
 
 		} catch (SQLException e) {

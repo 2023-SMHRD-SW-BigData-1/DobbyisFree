@@ -1,5 +1,6 @@
 package View;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import PokemonController.ActCon;
@@ -10,6 +11,9 @@ public class Main {
 	static PokemonController.ActCon pconAct = new PokemonController.ActCon();
 	static PokemonController.AsciiArt pconArt = new PokemonController.AsciiArt();
 
+
+	
+	
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 
@@ -19,7 +23,7 @@ public class Main {
 		
 		pconAct.main();
 
-		pconAct.act();
+		
 		// 친밀도 == 20 && 경험치 == 20 이면 진화창 출력
 		// 배틀메소드 실행
 
