@@ -148,7 +148,6 @@ public class ActCon {
 				Start();
 				System.out.print("당신의 [이름]을 알려주세요 >> ");
 				String id = sc.next();
-				pdao.insertDup(id);
 				System.out.print("트레이닝 중 갑작스러운 비상 상황에 대비하기 위해 당신의 [연락처]를 알려주세요 >> ");
 				int pw = sc.nextInt();
 				Doctorate();

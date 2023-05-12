@@ -26,7 +26,7 @@ public class PokemonDAO {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			String url = "jdbc:oracle:thin:@172.30.1.40:1521:xe";
 			String db_id = "POKEDB";
-			String db_pw = "123456";
+			String db_pw = "132456";
 			conn = DriverManager.getConnection(url, db_id, db_pw);
 
 		} catch (ClassNotFoundException e) {
