@@ -56,7 +56,7 @@ public class Main {
 
 		System.out.println("뮤츠와 친구가 되었다! ID는 포켓몬마스터가 되었다");
 
-		System.out.println("어머! ---는 싸우는 사이 뮤츠와 정분이 났다! ♡♡♡");
+		System.out.println("어머! ---는 싸우는 사이 뮤츠와 났다! ♡♡♡");
 
 		// 패배
 		System.out.println("패배하였습니다... 채찍질이 부족한 것 같다");

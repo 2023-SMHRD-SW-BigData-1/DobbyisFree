@@ -10,7 +10,6 @@ public class TrainerDTO {
 		super();
 		this.t_id = t_id;
 		this.t_pw = t_pw;
-		
 	}
 	public String getT_id() {
 		return t_id;
@@ -24,7 +23,7 @@ public class TrainerDTO {
 	public void setT_pw(String t_pw) {
 		this.t_pw = t_pw;
 	}
-
+	
 	
 	
 }

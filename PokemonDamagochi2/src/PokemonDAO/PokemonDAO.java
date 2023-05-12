@@ -37,11 +37,34 @@ public class PokemonDAO {
 		}
 	}
 
+	public void naming(String id , String name) {
+
+		getConn();
+		pdto = null;
+		String sql = "UPDATE 포켓몬 SET PNAME = ? WHERE T_ID = ?";
+
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, name);
+			psmt.setString(2, id);
+			psmt.executeUpdate();
+			
+
+		}
+
+		catch (SQLException e) {
+
+			e.printStackTrace();
+		} finally {
+			getClose();
+		}
+
+	}
 	// UPDATE 행동선택때마다 감소하거나 증가하는 능력치 수정해주는 메소드
 
 	// 채찍질 hp - 30 / atk + 5 / exp +2
 	public void Whip(String id) {
-		
+
 		getConn();
 		pdto = null;
 		String sql = "UPDATE 포켓몬 SET HP = HP-30, ATK = ATK +5, EXP = EXP+2 WHERE T_ID = ?";
@@ -61,10 +84,10 @@ public class PokemonDAO {
 		}
 
 	}
-	
+
 	// 놀아주기 hp - 30 / love +5 / exp +2
 	public void Play(String id) {
-		
+
 		getConn();
 		pdto = null;
 		String sql = "UPDATE 포켓몬 SET HP = HP-30, LOVE = LOVE +5, EXP = EXP+2 WHERE T_ID = ?";
@@ -85,10 +108,9 @@ public class PokemonDAO {
 
 	}
 
-	
 	// 잠자기 hp100 / exp +2
 	public void Sleep(String id) {
-	
+
 		getConn();
 		pdto = null;
 		String sql = "UPDATE 포켓몬 SET HP = 100, EXP = EXP+2 WHERE T_ID = ?";
@@ -108,10 +130,6 @@ public class PokemonDAO {
 		}
 
 	}
-
-	
-
-	
 
 	// 포켓몬 상태 메소드
 
@@ -142,7 +160,6 @@ public class PokemonDAO {
 
 		} catch (SQLException e) {
 
-	
 			e.printStackTrace();
 		} finally {
 			getClose();
@@ -153,33 +170,29 @@ public class PokemonDAO {
 
 	// 로그인 정보 체크하는 메소드 (select)
 	// 포켓몬 상태창에 불러올 수 있다면 메소드 중복해서 활용하자
-	
-	
-	
-	
-	
+
 	// 회원가입 할때 ID 중복체크 진짜 도저히모르겠음
 	public int DupCheck(String T_ID) {
 		getConn();
 
-	    String sql = "SELECT T_ID FROM 트레이너 WHERE T_ID = ?";
-	    int result = 0;
-	    try {
-	        psmt = conn.prepareStatement(sql);
-	        psmt.setString(1, T_ID);
-	        rs = psmt.executeQuery();
-	        while (rs.next()) {
-	            result = 1;
-	            
-	        }
-	    } catch (SQLException e) {
-	        e.printStackTrace();
-	    } finally {
-	        getClose();
-	    }
-	    return result;
+		String sql = "SELECT T_ID FROM 트레이너 WHERE T_ID = ?";
+		int result = 0;
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, T_ID);
+			rs = psmt.executeQuery();
+			while (rs.next()) {
+				result = 1;
 
-	} 
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			getClose();
+		}
+		return result;
+
+	}
 
 	public TrainerDTO login(String T_ID, String T_PW) {
 		getConn();
@@ -202,7 +215,6 @@ public class PokemonDAO {
 
 		} catch (SQLException e) {
 
-			
 			e.printStackTrace();
 		} finally {
 			getClose();
@@ -246,8 +258,7 @@ public class PokemonDAO {
 			psmt.executeUpdate();
 
 		} catch (SQLException e) {
-			
-			
+
 			e.printStackTrace();
 		} finally {
 			getClose();

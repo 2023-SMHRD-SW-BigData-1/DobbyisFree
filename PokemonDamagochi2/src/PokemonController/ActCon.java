@@ -13,6 +13,7 @@ public class ActCon {
 	PokemonDTO pdto = new PokemonDTO();
 	ArrayList<PokemonDTO> t_pdto = new ArrayList<PokemonDTO>();
 	static PokemonController.AsciiArt pconArt = new PokemonController.AsciiArt();
+	static PokemonController.BattleCon pconBattle = new PokemonController.BattleCon();
 	int input;
 
 	// 시작 시 프롤로그
@@ -21,7 +22,7 @@ public class ActCon {
 			for (int i = 0; i < 1; i++) {
 
 				System.out.println("포켓몬마스터가 되기 위해 모험을 떠난 '너!'와 친구들, 긴 여정을 마치고 환상의 포켓몬과의 최종결전을 앞두고 있다.");
-				Thread.sleep(1000);
+				Thread.sleep(1050);
 				System.out.println("결전에 앞서 혹독하고 처절한 트레이닝을 계획하는데...");
 			}
 		} catch (Exception e) {
@@ -36,7 +37,7 @@ public class ActCon {
 			for (int i = 0; i < 1; i++) {
 				pconArt.Okid();
 				System.out.println("그동안 고생많았다 이제 근본중에 근본인 그 녀석만 남았구나! 그간 함께했던 수많은 에이스포켓몬중에서 3마리를 엄선했단다.");
-				Thread.sleep(1000);
+				Thread.sleep(1050);
 				System.out.println("아무리 그래도 다구리치는건 추잡하지 않니? 마지막으로 너와 함께할 포켓몬을 딱 1마리만 골라보렴");
 			}
 		} catch (Exception e) {
@@ -71,37 +72,69 @@ public class ActCon {
 	public void act(String id) {
 		while (true) {
 			System.out.println("행동을 선택해주세요");
-			System.out.print("1.채찍질  2.놀아주기  3.잠자기 4. 포켓몬 상태 확인 >> ");
+			System.out.print("1.채찍질  2.놀아주기  3.잠자기 4. 포켓몬 상태 확인 5.배틀 >> ");
 			input = sc.nextInt();
 
 			switch (input) {
 			case 1:
 				t_pdto = pdao.state(id);
+				if (t_pdto.get(0).getPNAME().equals("라이츄")) {
+					System.out.println("더이상 성장할 수 없습니다. 메인화면으로 이동합니다.");
+					main();
+				} else if (t_pdto.get(0).getPNAME().equals("님피아")) {
+					System.out.println("더이상 성장할 수 없습니다. 메인화면으로 이동합니다.");
+					main();
+				} else if (t_pdto.get(0).getPNAME().equals("베이리프")) {
+					System.out.println("더이상 성장할 수 없습니다. 메인화면으로 이동합니다.");
+					main();
+
+				}
 				if (t_pdto.get(0).getT_ID().equals(id)) {
 					if (t_pdto.get(0).getHP() < 30) {
-					
+
 						System.out.println("체력이 부족합니다.");
-					} else {pdao.Whip(id);
-					System.out.println("---는 기분 좋은듯하다^^ 공격력이 올랐다!");
-					System.out.println("경험치가 올랐다.");
-					System.out.println("체력이 30 깎였다");
-						
+					} else {
+						pdao.Whip(id);
+						System.out.println(t_pdto.get(0).getPNAME()+"는 기분 좋은듯하다^^ ");
+						System.out.println("공격력이 올랐다! 경험치가 올랐다! 체력이 30 깎였다...");
+						System.out.println();
+
 					}
 				}
-
-			
 
 				if (t_pdto.get(0).getT_ID().equals(id)) {
 					if (t_pdto.get(0).getLOVE() >= 20 && t_pdto.get(0).getEXP() >= 20) {
 						// 진화 메소드 실행 (스토리용 출력문 있어야함)
 						// 만약 노래가 재생중이라면 노래를 멈추고 진화 노래를 시작한다
-						// 배틀 메소드 실행
-						System.out.println("진화합니다.");
+
+						System.out.println("오잉?! [ " + t_pdto.get(0).getPNAME() + " ] 의 상태가?");
+
+						if (t_pdto.get(0).getPNAME().equals("피카츄")) {
+							pdao.naming(id, "라이츄");
+							t_pdto = pdao.state(id);
+							System.out.println("피카츄는 [ " + t_pdto.get(0).getPNAME() + " ]로 진화했다!");
+							System.out.println();
+							pconBattle.Battle(id);
+
+						} else if (t_pdto.get(0).getPNAME().equals("이브이")) {
+							pdao.naming(id, "님피아");
+							t_pdto = pdao.state(id);
+							System.out.println("이브이는 [ " + t_pdto.get(0).getPNAME() + " ]로 진화했다!");
+							System.out.println();
+							pconBattle.Battle(id);
+							// 배틀 메소드 실행
+						} else if (t_pdto.get(0).getPNAME().equals("치코리타")) {
+							pdao.naming(id, "베이리프");
+							t_pdto = pdao.state(id);
+							System.out.println("치코리타는 [ " + t_pdto.get(0).getPNAME() + " ]로 진화했다!");
+							System.out.println();
+							pconBattle.Battle(id);
+							// 배틀 메소드 실행
+						}
 					} else {
 						// 충족하지 못하면 act 첫줄부터 반복하게 비워두기
 					}
 				}
-////
 //				// 만약 HP가 30미만이라면
 //				// 1번,2번 선택시에 HP가 부족합니다
 //				// act 첫줄부터 반복하게 비워두기
@@ -109,16 +142,74 @@ public class ActCon {
 
 				break;
 			case 2:
-				pdao.Play(id);
-				System.out.println("하하하하하하하~호호호호호호~흐헤흐헤흐히흐히히히히~ 친밀도가 올랐다!");
-				System.out.println("경험치가 올랐다.");
-				System.out.println("체력이 30 깎였다");
+				t_pdto = pdao.state(id);
+				if (t_pdto.get(0).getPNAME().equals("라이츄")) {
+					System.out.println("더 이상 성장할 수 없습니다. 메인화면으로 이동합니다.");
+					main();
+				} else if (t_pdto.get(0).getPNAME().equals("님피아")) {
+					System.out.println("더 이상 성장할 수 없습니다. 메인화면으로 이동합니다.");
+					main();
+				} else if (t_pdto.get(0).getPNAME().equals("베이리프")) {
+					System.out.println("더 이상 성장할 수 없습니다. 메인화면으로 이동합니다.");
+					main();
+
+				}
+
+				if (t_pdto.get(0).getT_ID().equals(id)) {
+					if (t_pdto.get(0).getHP() < 30) {
+
+						System.out.println("체력이 부족합니다.");
+					} else {
+						pdao.Play(id);
+						System.out.println("하하하하하하하~호호호호호호~흐헤흐헤흐히흐히히히히~");
+						System.out.println("친밀도가 올랐다! 경험치가 올랐다! 체력이 30 깎였다...");
+						System.out.println();
+
+					}
+				}
+
+				if (t_pdto.get(0).getT_ID().equals(id)) {
+					if (t_pdto.get(0).getLOVE() >= 20 && t_pdto.get(0).getEXP() >= 20) {
+						// 진화 메소드 실행 (스토리용 출력문 있어야함)
+						// 만약 노래가 재생중이라면 노래를 멈추고 진화 노래를 시작한다
+
+					
+						System.out.println("오잉?! [ " + t_pdto.get(0).getPNAME() + " ]의 상태가?");
+
+						if (t_pdto.get(0).getPNAME().equals("피카츄")) {
+							pdao.naming(id, "라이츄");
+							t_pdto = pdao.state(id);
+							System.out.println("피카츄는 [ " + t_pdto.get(0).getPNAME() + " ]로 진화했다!");
+							System.out.println();
+							pconBattle.Battle(id);
+
+						} else if (t_pdto.get(0).getPNAME().equals("이브이")) {
+							pdao.naming(id, "님피아");
+							t_pdto = pdao.state(id);
+							System.out.println("이브이는 [ " + t_pdto.get(0).getPNAME() + " ]로 진화했다!");
+							System.out.println();
+							pconBattle.Battle(id);
+							// 배틀 메소드 실행
+						} else if (t_pdto.get(0).getPNAME().equals("치코리타")) {
+							pdao.naming(id, "베이리프");
+							t_pdto = pdao.state(id);
+							System.out.println("치코리타는 [ " + t_pdto.get(0).getPNAME() + " ]로 진화했다!");
+							System.out.println();
+							pconBattle.Battle(id);
+							// 배틀 메소드 실행
+						}
+					} else {
+						// 충족하지 못하면 act 첫줄부터 반복하게 비워두기
+					}
+				}
 
 				break;
 			case 3:
+				t_pdto = pdao.state(id);
 				pdao.Sleep(id);
-				System.out.println("우리 ---는 자는 모습이 제일 귀엽당>< HP가 회복되었다!");
-				System.out.println("경험치가 올랐다.");
+				System.out.println("우리 [ " + t_pdto.get(0).getPNAME() + " ]는 자는 모습이 제일 귀엽당><");
+				System.out.println("체력이 전부 회복되었다! 경험치가 올랐다!");
+				System.out.println();
 				break;
 
 			// 포켓몬 상태
@@ -140,6 +231,9 @@ public class ActCon {
 					}
 				}
 				break;
+			case 5:
+				System.out.println("배틀로 진입합니다.");
+				pconBattle.Battle(id);
 
 			default:
 				System.out.println("잘못 입력하셨습니다.");

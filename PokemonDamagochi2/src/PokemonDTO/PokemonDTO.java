@@ -64,8 +64,8 @@ public class PokemonDTO {
 	}
 
 
-	public void setPNAME(String pNAME) {
-		PNAME = pNAME;
+	public String setPNAME(String pNAME) {
+		return pNAME;
 	}
 
 
