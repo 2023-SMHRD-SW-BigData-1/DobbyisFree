@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import PokemonController.ActCon;
 import PokemonDTO.PokemonDTO;
 
 public class PokemonDAO {
@@ -15,6 +16,7 @@ public class PokemonDAO {
 	
 	PokemonDTO pdto = new PokemonDTO(100, 0, 0, 0);
 	
+	static PokemonController.ActCon pcon = new PokemonController.ActCon();
 
 	// 문열기
 	public void getConn() {
@@ -47,10 +49,44 @@ public class PokemonDAO {
 	
 	
 	
-	
-	
 	// 로그인 정보 체크하는 메소드 (select)
 	// 포켓몬 상태창에 불러올 수 있다면 메소드 중복해서 활용하자 
+	int con = 0;
+	public PokemonDTO login(String T_ID , int T_PW) {
+		getConn();
+		
+		
+		String sql = "SELECT T_ID , T_PW FROM 트레이너 WHERE T_ID = ? AND T_PW = ?";
+		PokemonDTO t_pdto = null;
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, T_ID);
+			psmt.setInt(2, T_PW);
+			
+			rs = psmt.executeQuery();
+			
+			if(rs.next()) {
+				String T_id = rs.getString(1);
+				int T_pw = rs.getInt(2);
+			
+				t_pdto = new PokemonDTO(T_id,T_pw);
+			}
+			
+			
+			
+		} catch (SQLException e) {
+			
+			pcon.main();
+			e.printStackTrace();
+		}finally {
+			getClose();
+		}
+		return t_pdto;
+		
+		
+		
+	}
+
 	
 	
 	
@@ -92,6 +128,8 @@ public class PokemonDAO {
 			psmt.executeUpdate();
 
 		} catch (SQLException e) {
+			System.out.println("중복된 이름입니다. 메인화면으로 이동합니다.");
+			pcon.main();
 
 			e.printStackTrace();
 		} finally {

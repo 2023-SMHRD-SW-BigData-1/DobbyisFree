@@ -3,15 +3,19 @@ package PokemonController;
 import java.util.Scanner;
 
 import PokemonDAO.PokemonDAO;
+import PokemonDTO.PokemonDTO;
 
 public class ActCon {
 	Scanner sc = new Scanner(System.in);
 	PokemonDAO pdao = new PokemonDAO();
+	static PokemonController.AsciiArt pconArt = new PokemonController.AsciiArt();
+	int input;
 
 	// 시작 시 프롤로그
 	public void Start() {
 		try {
 			for (int i = 0; i < 1; i++) {
+				
 				System.out.println("포켓몬마스터가 되기 위해 모험을 떠난 '너!'와 친구들, 긴 여정을 마치고 환상의 포켓몬과의 최종결전을 앞두고 있다.");
 				Thread.sleep(1000);
 				System.out.println("결전에 앞서 혹독하고 처절한 트레이닝을 계획하는데...");
@@ -26,6 +30,7 @@ public class ActCon {
 	public void Doctorate() {
 		try {
 			for (int i = 0; i < 1; i++) {
+				pconArt.Okid();
 				System.out.println("그동안 고생많았다 이제 근본중에 근본인 그 녀석만 남았구나! 그간 함께했던 수많은 에이스포켓몬중에서 3마리를 엄선했단다.");
 				Thread.sleep(1000);
 				System.out.println("아무리 그래도 다구리치는건 추잡하지 않니? 마지막으로 너와 함께할 포켓몬을 딱 1마리만 골라보렴");
@@ -63,9 +68,21 @@ public class ActCon {
 		while (true) {
 			System.out.println("행동을 선택해주세요");
 			System.out.println("1.채찍질  2.놀아주기  3.잠자기");
-			int input = sc.nextInt();
+			input = sc.nextInt();
 			
-			System.out.println("친밀도가 올랐다!");
+			
+			switch(input) {
+			case 1:
+				System.out.println("공격력 , 경험치가 올랐다!");
+			case 2:
+				System.out.println("친밀도, 경험치가 올랐다!");
+			case 3:
+				System.out.println("hp100 , 경험치가 올랐다!");
+				default:
+					System.out.println("잘못 입력하셨습니다.");
+					break;
+			
+			}
 			// DB 능력치 값 불러오고 수정해서 다시 보내는 메소드
 			
 			// DB 능력치 값 불러오는 메소드 입력
@@ -90,27 +107,29 @@ public class ActCon {
 	// 메인페이지
 	public void main() {
 		int input = 0;
-
+		
+		
 		while (input != 3) {
-			System.out.println("메인 페이지"); // POKEMON 로고 메소드 불러와주세요
+			pconArt.Progo();
+			System.out.println();
 			System.out.print("1. 회원가입 2. 로그인 3. 종료 ");
 			System.out.print("선택 >>  ");
 			input = sc.nextInt();
 
 			switch (input) {
 			case 1:
-				System.out.println("회원가입을 선택하셨습니다.");
-				System.out.println("오박사 문구"); // 문구 메소드 불러와주세요
-				System.out.print("ID 입력> ");
+				Start();
+				System.out.print("당신의 [이름]을 알려주세요 >> ");
 				String id = sc.next();
-				System.out.print("PW 입력> ");
+				System.out.print("트레이닝 중 갑작스러운 비상 상황에 대비하기 위해 당신의 [연락처]를 알려주세요 >> ");
 				int pw = sc.nextInt();
+				Doctorate();
 				System.out.println();
 
 				int pcode = 0;
 
 				while (pcode != 3) {
-					System.out.println("포켓몬을 선택하세요");
+					
 					System.out.println("포켓몬그림"); // 포켓몬 그림 메소드 불러와주세요 
 					System.out.print("1.피카츄  2.이브이  3.치코리타");
 					pcode = sc.nextInt();
@@ -119,6 +138,7 @@ public class ActCon {
 						pdao.insertTrainer(id, pw, pcode);
 						System.out.println("게임을 시작합니다");
 						System.out.println();
+						act();
 						//gameStart 메소드
 						break;
 
@@ -126,6 +146,7 @@ public class ActCon {
 						pdao.insertTrainer(id, pw, pcode);
 						System.out.println("게임을 시작합니다");
 						System.out.println();
+						act();
 						//gameStart 메소드
 						break;
 
@@ -133,6 +154,7 @@ public class ActCon {
 						pdao.insertTrainer(id, pw, pcode);
 						System.out.println("게임을 시작합니다");
 						System.out.println();
+						act();
 						//gameStart 메소드
 						break;
 
@@ -154,16 +176,15 @@ public class ActCon {
 				System.out.print("PW 입력 > ");
 				pw = sc.nextInt();
 				// 로그인 DB 가져오는 메소드 (SELECT)
-				int cnt = 0;
-				if (cnt > 0) { //cnt는 로그인 성공 여부 값을 받아오는 변수
-					// 로그인에 성공한다면 gameStart 메소드 실행
+				PokemonDTO t_pdto = pdao.login(id, pw);
+				if (t_pdto != null) { 
+					System.out.println("로그인 성공");
+					System.out.println();
+					act();
 					
 				}else {
-					//로그인 정보가 틀렸다는 내용 출력
 					System.out.println("로그인 정보를 다시 확인해주세요. 메인화면으로 이동합니다.");
-					System.out.println();
 				}
-
 				break;
 			case 3:
 				System.out.println("게임을 종료합니다.");
@@ -177,6 +198,8 @@ public class ActCon {
 			}
 		}
 	}
+
+	
 
 	// 포켓몬 상태
 	// select 메소드로 불러와서

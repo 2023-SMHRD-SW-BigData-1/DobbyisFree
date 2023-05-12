@@ -7,16 +7,19 @@ import PokemonDAO.PokemonDAO;
 
 public class Main {
 
-	static PokemonController.ActCon pcon = new PokemonController.ActCon();
+	static PokemonController.ActCon pconAct = new PokemonController.ActCon();
+	static PokemonController.AsciiArt pconArt = new PokemonController.AsciiArt();
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 
 		PokemonDAO pdao = new PokemonDAO();
 
-		pcon.main();
+		
+		
+		pconAct.main();
 
-		pcon.act();
+		pconAct.act();
 		// 친밀도 == 20 && 경험치 == 20 이면 진화창 출력
 		// 배틀메소드 실행
 
@@ -29,17 +32,7 @@ public class Main {
 //			System.out.println("메인화면으로 이동합니다.");
 
 		// 출력문 입력 부탁드립니다.
-		ActCon SM = new ActCon();
-		SM.Start();
 
-		// 오박사 등장
-		SM.Doctorate();
-
-		// 회원가입 및 포켓몬 선택
-		SM.New();
-
-		// 로그인
-		SM.login();
 
 		// 키우기
 		System.out.println("1.행동 선택   2.메인페이지");

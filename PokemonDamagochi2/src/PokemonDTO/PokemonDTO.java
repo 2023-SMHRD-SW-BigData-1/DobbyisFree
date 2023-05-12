@@ -56,13 +56,16 @@ public class PokemonDTO {
     public int T_PW;
     public int PCODE;
 
-	public PokemonDTO(String T_ID, int T_PW, int PCODE) {
+	public PokemonDTO(String T_ID, int T_PW) {
 		super();
 		this.T_ID = T_ID;
 		this.T_PW = T_PW;
-		this.PCODE = PCODE;
+		
 	}
 
+	
+	
+	
 
 	public String getT_ID() {
 		return T_ID;
