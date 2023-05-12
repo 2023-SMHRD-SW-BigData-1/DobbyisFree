@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 import PokemonController.ActCon;
 import PokemonDTO.PokemonDTO;
+import PokemonDTO.TrainerDTO;
 
 public class PokemonDAO {
 	private Connection conn;
@@ -156,6 +157,7 @@ public class PokemonDAO {
 	
 	
 	
+	
 	// 회원가입 할때 ID 중복체크 진짜 도저히모르겠음
 	public int DupCheck(String T_ID) {
 		getConn();
@@ -179,11 +181,11 @@ public class PokemonDAO {
 
 	} 
 
-	public PokemonDTO login(String T_ID, String T_PW) {
+	public TrainerDTO login(String T_ID, String T_PW) {
 		getConn();
 
 		String sql = "SELECT T_ID , T_PW FROM 트레이너 WHERE T_ID = ? AND T_PW = ?";
-		PokemonDTO t_pdto = null;
+		TrainerDTO t_pdto = null;
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, T_ID);
@@ -195,7 +197,7 @@ public class PokemonDAO {
 				String T_id = rs.getString(1);
 				String T_pw = rs.getString(2);
 
-				t_pdto = new PokemonDTO(T_id, T_pw);
+				t_pdto = new TrainerDTO(T_id, T_pw);
 			}
 
 		} catch (SQLException e) {

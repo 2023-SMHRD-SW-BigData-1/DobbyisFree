@@ -5,11 +5,13 @@ import java.util.Scanner;
 
 import PokemonDAO.PokemonDAO;
 import PokemonDTO.PokemonDTO;
+import PokemonDTO.TrainerDTO;
 
 public class ActCon {
 	Scanner sc = new Scanner(System.in);
 	PokemonDAO pdao = new PokemonDAO();
 	PokemonDTO pdto = new PokemonDTO();
+	ArrayList<PokemonDTO> t_pdto = new ArrayList<PokemonDTO>();
 	static PokemonController.AsciiArt pconArt = new PokemonController.AsciiArt();
 	int input;
 
@@ -74,33 +76,37 @@ public class ActCon {
 
 			switch (input) {
 			case 1:
-				pdao.Whip(id);
-				System.out.println("---는 기분 좋은듯하다^^ 공격력이 올랐다!");
-				System.out.println("경험치가 올랐다.");
-				System.out.println("체력이 30 깎였다");
-				if (pdto.getT_ID().equals(id)) {
-					if (pdto.getLOVE() >= 20 && pdto.getEXP() >= 20) {
+				t_pdto = pdao.state(id);
+				if (t_pdto.get(0).getT_ID().equals(id)) {
+					if (t_pdto.get(0).getHP() < 30) {
+					
+						System.out.println("체력이 부족합니다.");
+					} else {pdao.Whip(id);
+					System.out.println("---는 기분 좋은듯하다^^ 공격력이 올랐다!");
+					System.out.println("경험치가 올랐다.");
+					System.out.println("체력이 30 깎였다");
+						
+					}
+				}
+
+			
+
+				if (t_pdto.get(0).getT_ID().equals(id)) {
+					if (t_pdto.get(0).getLOVE() >= 20 && t_pdto.get(0).getEXP() >= 20) {
 						// 진화 메소드 실행 (스토리용 출력문 있어야함)
 						// 만약 노래가 재생중이라면 노래를 멈추고 진화 노래를 시작한다
 						// 배틀 메소드 실행
+						System.out.println("진화합니다.");
 					} else {
 						// 충족하지 못하면 act 첫줄부터 반복하게 비워두기
 					}
 				}
+////
+//				// 만약 HP가 30미만이라면
+//				// 1번,2번 선택시에 HP가 부족합니다
+//				// act 첫줄부터 반복하게 비워두기
+//
 
-				// 만약 HP가 30미만이라면
-				// 1번,2번 선택시에 HP가 부족합니다
-				// act 첫줄부터 반복하게 비워두기
-
-				if (pdto.getT_ID().equals(id)) {
-					if (pdto.getHP() < 30) {
-						System.out.println("체력이 부족합니다.");
-					} else {
-
-					}
-				}
-				
-			
 				break;
 			case 2:
 				pdao.Play(id);
@@ -113,7 +119,6 @@ public class ActCon {
 				pdao.Sleep(id);
 				System.out.println("우리 ---는 자는 모습이 제일 귀엽당>< HP가 회복되었다!");
 				System.out.println("경험치가 올랐다.");
-				System.out.println("체력이 30 깎였다");
 				break;
 
 			// 포켓몬 상태
@@ -122,7 +127,7 @@ public class ActCon {
 
 			// 진화창
 			case 4:
-				ArrayList<PokemonDTO> t_pdto = pdao.state(id);
+				t_pdto = pdao.state(id);
 				for (PokemonDTO pdto : t_pdto) {
 					if (pdto.getT_ID().equals(id)) {
 						System.out.println("========================================================");
@@ -221,11 +226,13 @@ public class ActCon {
 				System.out.print("PW 입력 > ");
 				pw = sc.next();
 				// 로그인 DB 가져오는 메소드 (SELECT)
-				PokemonDTO t_pdto = pdao.login(id, pw);
+				TrainerDTO t_pdto = pdao.login(id, pw);
 				if (t_pdto != null) {
 					System.out.println("로그인 성공");
 					System.out.println();
-					act(id);
+					ArrayList<PokemonDTO> poke_list = pdao.state(t_pdto.getT_id());
+
+					act(poke_list.get(0).getT_ID());
 
 				} else {
 					System.out.println("로그인 정보를 다시 확인해주세요. 메인화면으로 이동합니다.");
