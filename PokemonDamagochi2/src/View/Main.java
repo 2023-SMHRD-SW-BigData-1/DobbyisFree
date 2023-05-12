@@ -42,17 +42,9 @@ public class Main {
 		System.out.println("1.행동 선택   2.메인페이지");
 		int start = sc.nextInt();
 
-		System.out.println("<< 1.채찍질하기 2.놀아주기 3.잠자기 >> ");
-		int training = sc.nextInt();
 
-		System.out.println("---는 기분 좋은듯하다^^ 공격력이 올랐다!");
-		System.out.println("경험치가 올랐다.");
 
-		System.out.println("하하하하하하하~호호호호호호~흐헤흐헤흐히흐히히히히~ 친밀도가 올랐다!");
-		System.out.println("경험치가 올랐다.");
-
-		System.out.println("우리 ---는 자는 모습이 제일 귀엽당>< HP가 회복되었다!");
-		System.out.println("경험치가 올랐다.");
+		
 
 		System.out.println("오잉?! ---의 상태가?");
 		System.out.println("---는 ---로 진화했다!");

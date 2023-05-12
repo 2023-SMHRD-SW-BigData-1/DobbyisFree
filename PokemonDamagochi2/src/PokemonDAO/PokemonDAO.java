@@ -156,28 +156,30 @@ public class PokemonDAO {
 	
 	
 	
-	// 회원가입 할때 ID 중복체크
-	public void insertDup(String T_ID) {
+	// 회원가입 할때 ID 중복체크 진짜 도저히모르겠음
+	public int DupCheck(String T_ID) {
 		getConn();
 
-		String sql = "INSERT INTO 트레이너 (T_ID) VALUES (?)";
-		try {
-			psmt = conn.prepareStatement(sql);
-			psmt.setString(1, T_ID);
-			psmt.executeUpdate();
+	    String sql = "SELECT T_ID FROM 트레이너 WHERE T_ID = ?";
+	    int result = 0;
+	    try {
+	        psmt = conn.prepareStatement(sql);
+	        psmt.setString(1, T_ID);
+	        rs = psmt.executeQuery();
+	        while (rs.next()) {
+	            result = 1;
+	            
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    } finally {
+	        getClose();
+	    }
+	    return result;
 
-		} catch (SQLException e) {
-			
+	} 
 
-			e.printStackTrace();
-		} finally {
-			getClose();
-
-		}
-
-	}
-
-	public PokemonDTO login(String T_ID, int T_PW) {
+	public PokemonDTO login(String T_ID, String T_PW) {
 		getConn();
 
 		String sql = "SELECT T_ID , T_PW FROM 트레이너 WHERE T_ID = ? AND T_PW = ?";
@@ -185,13 +187,13 @@ public class PokemonDAO {
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, T_ID);
-			psmt.setInt(2, T_PW);
+			psmt.setString(2, T_PW);
 
 			rs = psmt.executeQuery();
 
 			if (rs.next()) {
 				String T_id = rs.getString(1);
-				int T_pw = rs.getInt(2);
+				String T_pw = rs.getString(2);
 
 				t_pdto = new PokemonDTO(T_id, T_pw);
 			}
@@ -209,14 +211,14 @@ public class PokemonDAO {
 
 	// 회원가입 메소드
 
-	public void insertTrainer(String T_ID, int T_PW, int PCODE) {
+	public void insertTrainer(String T_ID, String T_PW, int PCODE) {
 		getConn();
 
 		String sql = "INSERT INTO 트레이너 (T_ID, T_PW, PCODE) VALUES (?, ?, ?)";
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, T_ID);
-			psmt.setInt(2, T_PW);
+			psmt.setString(2, T_PW);
 			psmt.setInt(3, PCODE);
 			psmt.executeUpdate();
 

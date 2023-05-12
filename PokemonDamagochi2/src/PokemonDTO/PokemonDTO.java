@@ -71,10 +71,10 @@ public class PokemonDTO {
 
 	// 회원DB
     public String T_ID;
-    public int T_PW;
+    public String T_PW;
     public int PCODE;
 
-	public PokemonDTO(String T_ID, int T_PW) {
+	public PokemonDTO(String T_ID, String T_PW) {
 		// 로그인 확인용 생성자
 		super();
 		this.T_ID = T_ID;
@@ -96,12 +96,12 @@ public class PokemonDTO {
 	}
 
 
-	public int getT_PW() {
+	public String getT_PW() {
 		return T_PW;
 	}
 
 
-	public void setT_PW(int t_PW) {
+	public void setT_PW(String t_PW) {
 		T_PW = t_PW;
 	}
 
