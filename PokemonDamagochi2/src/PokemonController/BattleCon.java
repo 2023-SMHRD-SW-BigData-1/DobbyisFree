@@ -1,6 +1,7 @@
 package PokemonController;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import PokemonDAO.PokemonDAO;
 import PokemonDTO.MuzDTO;
@@ -27,12 +28,18 @@ public class BattleCon {
 	PokemonDTO pdto = new PokemonDTO(0, 0, 0, 0);
 	MuzDTO MD = new MuzDTO();
 	static PokemonController.ActCon pconAct = new PokemonController.ActCon();
+	static PokemonController.AsciiArt pconArt = new PokemonController.AsciiArt();
 	// 배틀기능
 
+	Scanner sc = new Scanner(System.in);
+	int input = 0;
+	
 	public void Battle(String id) {
 		t_pdto = pdao.state(id);
+		System.out.println("포켓몬 전투병기 뮤츠가 나타났다!");
+		pconArt.Mewt();
 		while (true) {
-			System.out.println("포켓몬 전투병기 뮤츠가 나타났다!");
+
 			System.out.println("가라! " + t_pdto.get(0).getPNAME() + " 널 믿어");
 
 			System.out.println("뮤츠가 공격했다!");
@@ -42,21 +49,47 @@ public class BattleCon {
 
 			System.out.println(MDAtk + "의 데미지를 입었습니다.");
 
-			System.out.println("[ " + t_pdto.get(0).getPNAME() + " ]"+" 는 " + "[ "+t_pdto.get(0).getT_ID()+ " ] 를 슬프게 하지않기 위해 버텼다");
-			System.out.println(t_pdto.get(0).getPNAME() + "의 혼신의 힘을 다한 공격!");
+			System.out.println("[ " + t_pdto.get(0).getPNAME() + " ]" + " 는 " + "[ " + t_pdto.get(0).getT_ID()
+					+ " ] 를 슬프게 하지않기 위해 버텼다");
+
+			if (t_pdto.get(0).getPNAME().equals("라이츄")) {
+
+				pconArt.Raiatt();
+				System.out.println(t_pdto.get(0).getPNAME() + "의 혼신의 힘을 다한 공격!");
+			} else if (t_pdto.get(0).getPNAME().equals("님피아")) {
+				pconArt.Nimatt();
+				System.out.println(t_pdto.get(0).getPNAME() + "의 혼신의 힘을 다한 공격!");
+
+			} else if (t_pdto.get(0).getPNAME().equals("베이리프")) {
+				pconArt.Bayatt();
+				System.out.println(t_pdto.get(0).getPNAME() + "의 혼신의 힘을 다한 공격!");
+
+			}
+
 			MD.setHp(MD.getHp() - t_pdto.get(0).getATK());
 
 			if (t_pdto.get(0).getHP() <= 0) {
 				System.out.println("패배하였습니다... 채찍질이 부족한 것 같다");
-				System.out.println("메인으로 이동합니다.");
+				System.out.println("아무키나 입력하시면 메인으로 이동합니다.");
+				input = sc.nextInt();
+				
 				pconAct.main();
 				break;
 			} else if (MD.getHp() <= 0) {
 				System.out.println("승리하였습니다!");
 				System.out.println("뮤츠와의 배틀에서 승리하였습니다!");
-				System.out.println("뮤츠와 친구가 되었다!" + "[ "+t_pdto.get(0).getT_ID()+ " ]"+" 는 포켓몬마스터가 되었다");
-				System.out.println("메인으로 이동합니다.");
-				// 크레딧 
+				if(t_pdto.get(0).getPNAME().equals("라이츄")) {
+					pconArt.Raivic();
+				}else if(t_pdto.get(0).getPNAME().equals("님피아")) {
+					pconArt.Nimvic();
+				}else if(t_pdto.get(0).getPNAME().equals("베이리프")) {
+					pconArt.Bayvic();
+				}
+				System.out.println("뮤츠와 친구가 되었다!" + "[ " + t_pdto.get(0).getT_ID() + " ]" + " 는 포켓몬마스터가 되었다");
+				System.out.println();
+				System.out.println("아무키나 입력하시면 메인으로 이동합니다.");
+				input = sc.nextInt();
+				// 크레딧
 				pconAct.main();
 				break;
 			}

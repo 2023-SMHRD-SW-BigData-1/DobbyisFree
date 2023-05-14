@@ -38,7 +38,7 @@ public class ActCon {
 				pconArt.Okid();
 				System.out.println("그동안 고생많았다 이제 근본중에 근본인 그 녀석만 남았구나! 그간 함께했던 수많은 에이스포켓몬중에서 3마리를 엄선했단다.");
 				Thread.sleep(1050);
-				System.out.println("아무리 그래도 다구리치는건 추잡하지 않니? 마지막으로 너와 함께할 포켓몬을 딱 1마리만 골라보렴");
+				System.out.println("마지막으로 너와 함께할 포켓몬을 딱 1마리만 골라보렴");
 			}
 		} catch (Exception e) {
 			System.out.println(e);
@@ -71,21 +71,43 @@ public class ActCon {
 
 	public void act(String id) {
 		while (true) {
-			System.out.println("행동을 선택해주세요");
-			System.out.print("1.채찍질  2.놀아주기  3.잠자기 4. 포켓몬 상태 확인 5.배틀 >> ");
-			input = sc.nextInt();
+			t_pdto = pdao.state(id);
+			if (t_pdto.get(0).getPNAME().equals("라이츄")) {
+				System.out.print("1.채찍질  2.놀아주기  3.잠자기  4.포켓몬 상태 확인  5.최종배틀  [선택]>>");
+				input = sc.nextInt();
+
+			} else if (t_pdto.get(0).getPNAME().equals("님피아")) {
+				System.out.print("1.채찍질  2.놀아주기  3.잠자기  4.포켓몬 상태 확인  5.최종배틀  [선택]>>");
+				input = sc.nextInt();
+
+			} else if (t_pdto.get(0).getPNAME().equals("베이리프")) {
+				System.out.print("1.채찍질  2.놀아주기  3.잠자기  4.포켓몬 상태 확인  5.최종배틀  [선택]>>");
+				input = sc.nextInt();
+
+			} else {
+				System.out.println("행동을 선택해주세요");
+				System.out.print("1.채찍질  2.놀아주기  3.잠자기  4.포켓몬 상태 확인   [선택]>>");
+				input = sc.nextInt();
+
+			}
 
 			switch (input) {
 			case 1:
 				t_pdto = pdao.state(id);
 				if (t_pdto.get(0).getPNAME().equals("라이츄")) {
-					System.out.println("더이상 성장할 수 없습니다. 메인화면으로 이동합니다.");
+					System.out.println("더이상 성장할 수 없습니다.");
+					System.out.println("아무 키나 입력하시면 메인화면으로 이동합니다.");
+					input = sc.nextInt();
 					main();
 				} else if (t_pdto.get(0).getPNAME().equals("님피아")) {
-					System.out.println("더이상 성장할 수 없습니다. 메인화면으로 이동합니다.");
+					System.out.println("더이상 성장할 수 없습니다.");
+					System.out.println("아무 키나 입력하시면 메인화면으로 이동합니다.");
+					input = sc.nextInt();
 					main();
 				} else if (t_pdto.get(0).getPNAME().equals("베이리프")) {
-					System.out.println("더이상 성장할 수 없습니다. 메인화면으로 이동합니다.");
+					System.out.println("더이상 성장할 수 없습니다.");
+					System.out.println("아무 키나 입력하시면 메인화면으로 이동합니다.");
+					input = sc.nextInt();
 					main();
 
 				}
@@ -93,109 +115,390 @@ public class ActCon {
 					if (t_pdto.get(0).getHP() < 30) {
 
 						System.out.println("체력이 부족합니다.");
-					} else {
+					} else if (t_pdto.get(0).getT_ID().equals(id) && t_pdto.get(0).getPNAME().equals("피카츄")) {
+						pconArt.pikachae();
 						pdao.Whip(id);
-						System.out.println(t_pdto.get(0).getPNAME()+"는 기분 좋은듯하다^^ ");
+						System.out.println("===============================================");
+						System.out.println(t_pdto.get(0).getPNAME() + "는 트레이너를 위해 견뎌냈다! ");
 						System.out.println("공격력이 올랐다! 경험치가 올랐다! 체력이 30 깎였다...");
+						System.out.println("===============================================");
 						System.out.println();
 
+					} else if (t_pdto.get(0).getT_ID().equals(id) && t_pdto.get(0).getPNAME().equals("이브이")) {
+						pconArt.Eeveechae();
+						pdao.Whip(id);
+
+						System.out.println("===============================================");
+						System.out.println(t_pdto.get(0).getPNAME() + "는 트레이너를 위해 견뎌냈다! ");
+						System.out.println("공격력이 올랐다! 경험치가 올랐다! 체력이 30 깎였다...");
+						System.out.println("===============================================");
+
+						System.out.println();
+
+					} else if (t_pdto.get(0).getT_ID().equals(id) && t_pdto.get(0).getPNAME().equals("치코리타")) {
+						pconArt.Chikochae();
+						pdao.Whip(id);
+
+						System.out.println("===============================================");
+						System.out.println(t_pdto.get(0).getPNAME() + "는 트레이너를 위해 견뎌냈다! ");
+						System.out.println("공격력이 올랐다! 경험치가 올랐다! 체력이 30 깎였다...");
+						System.out.println("===============================================");
+
+						System.out.println();
 					}
 				}
 
 				if (t_pdto.get(0).getT_ID().equals(id)) {
-					if (t_pdto.get(0).getLOVE() >= 20 && t_pdto.get(0).getEXP() >= 20) {
+					if (t_pdto.get(0).getLOVE() >= 20 && t_pdto.get(0).getEXP() >= 20 && t_pdto.get(0).getATK() >= 50) {
 						// 진화 메소드 실행 (스토리용 출력문 있어야함)
 						// 만약 노래가 재생중이라면 노래를 멈추고 진화 노래를 시작한다
 
-						System.out.println("오잉?! [ " + t_pdto.get(0).getPNAME() + " ] 의 상태가?");
-
-						if (t_pdto.get(0).getPNAME().equals("피카츄")) {
-							pdao.naming(id, "라이츄");
-							t_pdto = pdao.state(id);
-							System.out.println("피카츄는 [ " + t_pdto.get(0).getPNAME() + " ]로 진화했다!");
-							System.out.println();
-							pconBattle.Battle(id);
-
-						} else if (t_pdto.get(0).getPNAME().equals("이브이")) {
-							pdao.naming(id, "님피아");
-							t_pdto = pdao.state(id);
-							System.out.println("이브이는 [ " + t_pdto.get(0).getPNAME() + " ]로 진화했다!");
-							System.out.println();
-							pconBattle.Battle(id);
-							// 배틀 메소드 실행
-						} else if (t_pdto.get(0).getPNAME().equals("치코리타")) {
-							pdao.naming(id, "베이리프");
-							t_pdto = pdao.state(id);
-							System.out.println("치코리타는 [ " + t_pdto.get(0).getPNAME() + " ]로 진화했다!");
-							System.out.println();
-							pconBattle.Battle(id);
-							// 배틀 메소드 실행
-						}
-					} else {
-						// 충족하지 못하면 act 첫줄부터 반복하게 비워두기
-					}
-				}
-//				// 만약 HP가 30미만이라면
-//				// 1번,2번 선택시에 HP가 부족합니다
-//				// act 첫줄부터 반복하게 비워두기
-//
-
-				break;
-			case 2:
-				t_pdto = pdao.state(id);
-				if (t_pdto.get(0).getPNAME().equals("라이츄")) {
-					System.out.println("더 이상 성장할 수 없습니다. 메인화면으로 이동합니다.");
-					main();
-				} else if (t_pdto.get(0).getPNAME().equals("님피아")) {
-					System.out.println("더 이상 성장할 수 없습니다. 메인화면으로 이동합니다.");
-					main();
-				} else if (t_pdto.get(0).getPNAME().equals("베이리프")) {
-					System.out.println("더 이상 성장할 수 없습니다. 메인화면으로 이동합니다.");
-					main();
-
-				}
-
-				if (t_pdto.get(0).getT_ID().equals(id)) {
-					if (t_pdto.get(0).getHP() < 30) {
-
-						System.out.println("체력이 부족합니다.");
-					} else {
-						pdao.Play(id);
-						System.out.println("하하하하하하하~호호호호호호~흐헤흐헤흐히흐히히히히~");
-						System.out.println("친밀도가 올랐다! 경험치가 올랐다! 체력이 30 깎였다...");
-						System.out.println();
-
-					}
-				}
-
-				if (t_pdto.get(0).getT_ID().equals(id)) {
-					if (t_pdto.get(0).getLOVE() >= 20 && t_pdto.get(0).getEXP() >= 20) {
-						// 진화 메소드 실행 (스토리용 출력문 있어야함)
-						// 만약 노래가 재생중이라면 노래를 멈추고 진화 노래를 시작한다
-
-					
 						System.out.println("오잉?! [ " + t_pdto.get(0).getPNAME() + " ]의 상태가?");
 
 						if (t_pdto.get(0).getPNAME().equals("피카츄")) {
 							pdao.naming(id, "라이츄");
 							t_pdto = pdao.state(id);
+							pconArt.Rai();
 							System.out.println("피카츄는 [ " + t_pdto.get(0).getPNAME() + " ]로 진화했다!");
 							System.out.println();
-							pconBattle.Battle(id);
+
+							System.out.println("이 다음은 최종배틀이 진행됩니다.");
+							System.out.println("현재 포켓몬의 상태를 확인하시고 진행하세요");
+							while (true) {
+								System.out.println("1.포켓몬센터  2.포켓몬상태확인  3.배틀진행  4.메인화면  [선택]>> ");
+								input = sc.nextInt();
+								switch (input) {
+								case 1:
+									pdao.Sleep(id);
+									System.out.println("체력이 모두 회복 되었다 !");
+									break;
+
+								case 2:
+									t_pdto = pdao.state(id);
+									for (PokemonDTO pdto : t_pdto) {
+										if (pdto.getT_ID().equals(id)) {
+											System.out.println(
+													"========================================================");
+											System.out.printf("%4s\t%4s\t%4s\t%5s\t%5s\t%3s\n", "트레이너명", "HP", "ATK",
+													"LOVE", "EXP", "포켓몬이름");
+
+											System.out.printf("%4s\t%4d\t%4d\t%4d\t%4d\t%4s\n", pdto.getT_ID(),
+													pdto.getHP(), pdto.getATK(), pdto.getLOVE(), pdto.getEXP(),
+													pdto.getPNAME());
+											System.out.println(
+													"========================================================");
+										}
+									}
+									break;
+								case 3:
+									pconBattle.Battle(id);
+									break;
+								case 4:
+									main();
+									break;
+
+								default:
+									System.out.println("잘못된 입력입니다. 다시 입력하세요.");
+									break;
+								}
+							}
 
 						} else if (t_pdto.get(0).getPNAME().equals("이브이")) {
 							pdao.naming(id, "님피아");
 							t_pdto = pdao.state(id);
+							pconArt.Nim();
 							System.out.println("이브이는 [ " + t_pdto.get(0).getPNAME() + " ]로 진화했다!");
 							System.out.println();
-							pconBattle.Battle(id);
+							System.out.println("이 다음은 최종배틀이 진행됩니다.");
+							System.out.println("현재 포켓몬의 상태를 확인하시고 진행하세요");
+							while (true) {
+								System.out.println("1.포켓몬센터  2.포켓몬상태확인  3.배틀진행  4.메인화면  [선택]>> ");
+								input = sc.nextInt();
+								switch (input) {
+								case 1:
+									pdao.Sleep(id);
+									System.out.println("체력이 모두 회복 되었다 !");
+									break;
+
+								case 2:
+									t_pdto = pdao.state(id);
+									for (PokemonDTO pdto : t_pdto) {
+										if (pdto.getT_ID().equals(id)) {
+											System.out.println(
+													"========================================================");
+											System.out.printf("%4s\t%4s\t%4s\t%5s\t%5s\t%3s\n", "트레이너명", "HP", "ATK",
+													"LOVE", "EXP", "포켓몬이름");
+
+											System.out.printf("%4s\t%4d\t%4d\t%4d\t%4d\t%4s\n", pdto.getT_ID(),
+													pdto.getHP(), pdto.getATK(), pdto.getLOVE(), pdto.getEXP(),
+													pdto.getPNAME());
+											System.out.println(
+													"========================================================");
+										}
+									}
+									break;
+								case 3:
+									pconBattle.Battle(id);
+									break;
+								case 4:
+									main();
+									break;
+
+								default:
+									System.out.println("잘못된 입력입니다. 다시 입력하세요.");
+									break;
+								}
+							}
+
+						} else if (t_pdto.get(0).getPNAME().equals("치코리타")) {
+							pdao.naming(id, "베이리프");
+							t_pdto = pdao.state(id);
+							pconArt.Bay();
+							System.out.println("치코리타는 [ " + t_pdto.get(0).getPNAME() + " ]로 진화했다!");
+							System.out.println();
+							System.out.println("이 다음은 최종배틀이 진행됩니다.");
+							System.out.println("현재 포켓몬의 상태를 확인하시고 진행하세요");
+							while (true) {
+								System.out.println("1.포켓몬센터  2.포켓몬상태확인  3.배틀진행  4.메인화면  [선택]>> ");
+								input = sc.nextInt();
+								switch (input) {
+								case 1:
+									pdao.Sleep(id);
+									System.out.println("체력이 모두 회복 되었다 !");
+									break;
+
+								case 2:
+									t_pdto = pdao.state(id);
+									for (PokemonDTO pdto : t_pdto) {
+										if (pdto.getT_ID().equals(id)) {
+											System.out.println(
+													"========================================================");
+											System.out.printf("%4s\t%4s\t%4s\t%5s\t%5s\t%3s\n", "트레이너명", "HP", "ATK",
+													"LOVE", "EXP", "포켓몬이름");
+
+											System.out.printf("%4s\t%4d\t%4d\t%4d\t%4d\t%4s\n", pdto.getT_ID(),
+													pdto.getHP(), pdto.getATK(), pdto.getLOVE(), pdto.getEXP(),
+													pdto.getPNAME());
+											System.out.println(
+													"========================================================");
+										}
+									}
+									break;
+								case 3:
+									pconBattle.Battle(id);
+									break;
+								case 4:
+									main();
+									break;
+
+								default:
+									System.out.println("잘못된 입력입니다. 다시 입력하세요.");
+									break;
+								}
+							}
+						}
+					} else {
+						// 충족하지 못하면 act 첫줄부터 반복하게 비워두기
+					}
+				}
+//					// 만약 HP가 30미만이라면
+//					// 1번,2번 선택시에 HP가 부족합니다
+//					// act 첫줄부터 반복하게 비워두기
+				//
+
+				break;
+			case 2:
+				t_pdto = pdao.state(id);
+				if (t_pdto.get(0).getPNAME().equals("라이츄")) {
+					System.out.println("더이상 성장할 수 없습니다.");
+					System.out.println("아무 키나 입력하시면 메인화면으로 이동합니다.");
+					input = sc.nextInt();
+					main();
+				} else if (t_pdto.get(0).getPNAME().equals("님피아")) {
+					System.out.println("더이상 성장할 수 없습니다.");
+					System.out.println("아무 키나 입력하시면 메인화면으로 이동합니다.");
+					input = sc.nextInt();
+					main();
+				} else if (t_pdto.get(0).getPNAME().equals("베이리프")) {
+					System.out.println("더이상 성장할 수 없습니다.");
+					System.out.println("아무 키나 입력하시면 메인화면으로 이동합니다.");
+					input = sc.nextInt();
+					main();
+
+				}
+
+				if (t_pdto.get(0).getT_ID().equals(id)) {
+					if (t_pdto.get(0).getHP() < 30) {
+
+						System.out.println("체력이 부족합니다.");
+					} else if (t_pdto.get(0).getT_ID().equals(id) && t_pdto.get(0).getPNAME().equals("피카츄")) {
+						pconArt.pikaplay();
+						pdao.Play(id);
+						System.out.println("===============================================");
+						System.out.println("하하하하하하하~호호호호호호~흐헤흐헤흐히흐히히히히~");
+						System.out.println("친밀도가 올랐다! 경험치가 올랐다! 체력이 30 깎였다...");
+						System.out.println("===============================================");
+						System.out.println();
+
+					} else if (t_pdto.get(0).getT_ID().equals(id) && t_pdto.get(0).getPNAME().equals("이브이")) {
+						pconArt.Eeveeplay();
+						pdao.Play(id);
+						System.out.println("===============================================");
+						System.out.println("하하하하하하하~호호호호호호~흐헤흐헤흐히흐히히히히~");
+						System.out.println("친밀도가 올랐다! 경험치가 올랐다! 체력이 30 깎였다...");
+						System.out.println("===============================================");
+						System.out.println();
+
+					} else if (t_pdto.get(0).getT_ID().equals(id) && t_pdto.get(0).getPNAME().equals("치코리타")) {
+						pconArt.Chikoplay();
+						pdao.Play(id);
+						System.out.println("===============================================");
+						System.out.println("하하하하하하하~호호호호호호~흐헤흐헤흐히흐히히히히~");
+						System.out.println("친밀도가 올랐다! 경험치가 올랐다! 체력이 30 깎였다...");
+						System.out.println("===============================================");
+						System.out.println();
+
+					}
+				}
+
+				if (t_pdto.get(0).getT_ID().equals(id)) {
+					if (t_pdto.get(0).getLOVE() >= 20 && t_pdto.get(0).getEXP() >= 20 && t_pdto.get(0).getATK() >= 50) {
+						// 진화 메소드 실행 (스토리용 출력문 있어야함)
+						// 만약 노래가 재생중이라면 노래를 멈추고 진화 노래를 시작한다
+
+						System.out.println("오잉?! [ " + t_pdto.get(0).getPNAME() + " ]의 상태가?");
+
+						if (t_pdto.get(0).getPNAME().equals("피카츄")) {
+							pdao.naming(id, "라이츄");
+							t_pdto = pdao.state(id);
+							pconArt.Rai();
+							System.out.println("피카츄는 [ " + t_pdto.get(0).getPNAME() + " ]로 진화했다!");
+							System.out.println();
+							System.out.println("이 다음은 최종배틀이 진행됩니다.");
+							System.out.println("현재 포켓몬의 상태를 확인하시고 진행하세요");
+							while(true) {
+								System.out.println("1.포켓몬센터  2.포켓몬상태확인  3.배틀진행  4.메인화면  [선택]>> ");
+								input = sc.nextInt();
+								switch (input) {
+								case 1:
+									pdao.Sleep(id);
+									System.out.println("체력이 모두 회복 되었다 !");
+									break;
+									
+								case 2:
+									t_pdto = pdao.state(id);
+									for (PokemonDTO pdto : t_pdto) {
+										if (pdto.getT_ID().equals(id)) {
+											System.out.println("========================================================");
+											System.out.printf("%4s\t%4s\t%4s\t%5s\t%5s\t%3s\n", "트레이너명", "HP", "ATK", "LOVE", "EXP",
+													"포켓몬이름");
+
+											System.out.printf("%4s\t%4d\t%4d\t%4d\t%4d\t%4s\n", pdto.getT_ID(), pdto.getHP(), pdto.getATK(),
+													pdto.getLOVE(), pdto.getEXP(), pdto.getPNAME());
+											System.out.println("========================================================");
+										}
+									}
+									break;
+								case 3:
+									pconBattle.Battle(id);
+									break;
+								case 4:
+									main();
+									break;
+									
+								default:
+									System.out.println("잘못된 입력입니다. 다시 입력하세요.");
+									break;
+								}
+							}
+
+						} else if (t_pdto.get(0).getPNAME().equals("이브이")) {
+							pdao.naming(id, "님피아");
+							t_pdto = pdao.state(id);
+							pconArt.Nim();
+							System.out.println("이브이는 [ " + t_pdto.get(0).getPNAME() + " ]로 진화했다!");
+							System.out.println();
+							System.out.println("이 다음은 최종배틀이 진행됩니다.");
+							System.out.println("현재 포켓몬의 상태를 확인하시고 진행하세요");
+							while(true) {
+								System.out.println("1.포켓몬센터  2.포켓몬상태확인  3.배틀진행  4.메인화면  [선택]>> ");
+								input = sc.nextInt();
+								switch (input) {
+								case 1:
+									pdao.Sleep(id);
+									System.out.println("체력이 모두 회복 되었다 !");
+									break;
+									
+								case 2:
+									t_pdto = pdao.state(id);
+									for (PokemonDTO pdto : t_pdto) {
+										if (pdto.getT_ID().equals(id)) {
+											System.out.println("========================================================");
+											System.out.printf("%4s\t%4s\t%4s\t%5s\t%5s\t%3s\n", "트레이너명", "HP", "ATK", "LOVE", "EXP",
+													"포켓몬이름");
+
+											System.out.printf("%4s\t%4d\t%4d\t%4d\t%4d\t%4s\n", pdto.getT_ID(), pdto.getHP(), pdto.getATK(),
+													pdto.getLOVE(), pdto.getEXP(), pdto.getPNAME());
+											System.out.println("========================================================");
+										}
+									}
+									break;
+								case 3:
+									pconBattle.Battle(id);
+									break;
+								case 4:
+									main();
+									break;
+									
+								default:
+									System.out.println("잘못된 입력입니다. 다시 입력하세요.");
+									break;
+								}
+							}
 							// 배틀 메소드 실행
 						} else if (t_pdto.get(0).getPNAME().equals("치코리타")) {
 							pdao.naming(id, "베이리프");
 							t_pdto = pdao.state(id);
+							pconArt.Bay();
 							System.out.println("치코리타는 [ " + t_pdto.get(0).getPNAME() + " ]로 진화했다!");
 							System.out.println();
-							pconBattle.Battle(id);
+							System.out.println("이 다음은 최종배틀이 진행됩니다.");
+							System.out.println("현재 포켓몬의 상태를 확인하시고 진행하세요");
+							while(true) {
+								System.out.println("1.포켓몬센터  2.포켓몬상태확인  3.배틀진행  4.메인화면  [선택]>> ");
+								input = sc.nextInt();
+								switch (input) {
+								case 1:
+									pdao.Sleep(id);
+									System.out.println("체력이 모두 회복 되었다 !");
+									break;
+									
+								case 2:
+									t_pdto = pdao.state(id);
+									for (PokemonDTO pdto : t_pdto) {
+										if (pdto.getT_ID().equals(id)) {
+											System.out.println("========================================================");
+											System.out.printf("%4s\t%4s\t%4s\t%5s\t%5s\t%3s\n", "트레이너명", "HP", "ATK", "LOVE", "EXP",
+													"포켓몬이름");
+
+											System.out.printf("%4s\t%4d\t%4d\t%4d\t%4d\t%4s\n", pdto.getT_ID(), pdto.getHP(), pdto.getATK(),
+													pdto.getLOVE(), pdto.getEXP(), pdto.getPNAME());
+											System.out.println("========================================================");
+										}
+									}
+									break;
+								case 3:
+									pconBattle.Battle(id);
+									break;
+								case 4:
+									main();
+									break;
+									
+								default:
+									System.out.println("잘못된 입력입니다. 다시 입력하세요.");
+									break;
+								}
+							}
 							// 배틀 메소드 실행
 						}
 					} else {
@@ -207,16 +510,62 @@ public class ActCon {
 			case 3:
 				t_pdto = pdao.state(id);
 				pdao.Sleep(id);
-				System.out.println("우리 [ " + t_pdto.get(0).getPNAME() + " ]는 자는 모습이 제일 귀엽당><");
-				System.out.println("체력이 전부 회복되었다! 경험치가 올랐다!");
-				System.out.println();
+				if (t_pdto.get(0).getPNAME().equals("피카츄")) {
+					pconArt.pikasleep();
+					System.out.println("===============================================");
+					System.out.println("우리 [ " + t_pdto.get(0).getPNAME() + " ]는 자는 모습이 제일 귀엽당><");
+					System.out.println("체력이 전부 회복되었다! 경험치가 올랐다!");
+					System.out.println("===============================================");
+					System.out.println();
+
+				} else if (t_pdto.get(0).getPNAME().equals("이브이")) {
+					pconArt.Eeveesleep();
+					System.out.println("===============================================");
+					System.out.println("우리 [ " + t_pdto.get(0).getPNAME() + " ]는 자는 모습이 제일 귀엽당><");
+					System.out.println("체력이 전부 회복되었다! 경험치가 올랐다!");
+					System.out.println("===============================================");
+					System.out.println();
+
+				} else if (t_pdto.get(0).getPNAME().equals("치코리타")) {
+					pconArt.Chikosleep();
+					System.out.println("===============================================");
+					System.out.println("우리 [ " + t_pdto.get(0).getPNAME() + " ]는 자는 모습이 제일 귀엽당><");
+					System.out.println("체력이 전부 회복되었다! 경험치가 올랐다!");
+					System.out.println("===============================================");
+					System.out.println();
+
+				}
+				if (t_pdto.get(0).getPNAME().equals("라이츄")) {
+					System.out.println();
+					System.out.println("===============================================");
+					System.out.println("우리 [ " + t_pdto.get(0).getPNAME() + " ]는 자는 모습이 제일 귀엽당><");
+					System.out.println("체력이 전부 회복되었다! 경험치가 올랐다!");
+					System.out.println("===============================================");
+					System.out.println();
+
+				} else if (t_pdto.get(0).getPNAME().equals("님피아")) {
+					System.out.println();
+					System.out.println("===============================================");
+					System.out.println("우리 [ " + t_pdto.get(0).getPNAME() + " ]는 자는 모습이 제일 귀엽당><");
+					System.out.println("체력이 전부 회복되었다! 경험치가 올랐다!");
+					System.out.println("===============================================");
+					System.out.println();
+
+				} else if (t_pdto.get(0).getPNAME().equals("베이리프")) {
+					System.out.println();
+					System.out.println("===============================================");
+					System.out.println("우리 [ " + t_pdto.get(0).getPNAME() + " ]는 자는 모습이 제일 귀엽당><");
+					System.out.println("체력이 전부 회복되었다! 경험치가 올랐다!");
+					System.out.println("===============================================");
+					System.out.println();
+
+				}
+
 				break;
 
 			// 포켓몬 상태
 			// select 메소드로 불러와서
 			// 이름 , hp , atk , love , exp만 출력
-
-			// 진화창
 			case 4:
 				t_pdto = pdao.state(id);
 				for (PokemonDTO pdto : t_pdto) {
@@ -241,10 +590,11 @@ public class ActCon {
 
 			}
 
-			// .getLove , .getExp 로 대조해야할 것 같은데 어떻게 로직 짜야하는지 조금만 더 생각해봄
-			// ArrayList로 담아야할것같다
-
 		}
+
+		// .getLove , .getExp 로 대조해야할 것 같은데 어떻게 로직 짜야하는지 조금만 더 생각해봄
+		// ArrayList로 담아야할것같다
+
 	}
 
 	// 메인페이지
@@ -254,8 +604,7 @@ public class ActCon {
 		while (input != 3) {
 			pconArt.Progo();
 			System.out.println();
-			System.out.print("1. 회원가입 2. 로그인 3. 종료 ");
-			System.out.print("선택 >>  ");
+			System.out.print("1.회원가입  2.로그인   3.종료    [선택]>> ");
 			input = sc.nextInt();
 
 			switch (input) {
@@ -274,8 +623,10 @@ public class ActCon {
 
 				while (pcode != 3) {
 
-					System.out.println("포켓몬그림"); // 포켓몬 그림 메소드 불러와주세요
-					System.out.print("1.피카츄  2.이브이  3.치코리타");
+					pconArt.pika();
+					pconArt.Eevee();
+					pconArt.Chiko(); // 포켓몬 그림 메소드 불러와주세요
+					System.out.print("1.피카츄  2.이브이  3.치코리타   [선택]>> ");
 					pcode = sc.nextInt();
 					switch (pcode) {
 					case 1:
@@ -315,9 +666,9 @@ public class ActCon {
 				break;
 			case 2:
 				System.out.println("로그인 선택하셨습니다.");
-				System.out.print("ID 입력 > ");
+				System.out.print("이름 입력 > ");
 				id = sc.next();
-				System.out.print("PW 입력 > ");
+				System.out.print("비밀번호 입력 > ");
 				pw = sc.next();
 				// 로그인 DB 가져오는 메소드 (SELECT)
 				TrainerDTO t_pdto = pdao.login(id, pw);
