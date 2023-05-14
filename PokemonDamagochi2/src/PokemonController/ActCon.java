@@ -1,6 +1,7 @@
 package PokemonController;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import PokemonDAO.PokemonDAO;
@@ -45,33 +46,11 @@ public class ActCon {
 		}
 	}
 
-	// 회원가입시 나오는 문구
-	public void New() {
-		Scanner sc = new Scanner(System.in);
-		System.out.print("ID 입력 : ");
-		String ID = sc.next();
-		System.out.print("PW 입력 : ");
-		String PW = sc.next();
-
-		System.out.print("함께할 Pokemon 선택 : ");
-		String Pokemon = sc.next();
-	}
-
-	// 로그인시 나오는 문구
-	public void login() {
-		System.out.print("ID 입력 : ");
-		String ID = sc.next();
-		System.out.print("PW 입력 : ");
-		String PW = sc.next();
-	}
-
-	// 채찍질
-	// 놀아주기
-	// 명상하기
+	
 
 	public void act(String id) {
 		while (true) {
-			t_pdto = pdao.state(id);
+			t_pdto = pdao.state(id); //진화한 애들을 가진 트레이너 로그인시 선택지 추가함
 			if (t_pdto.get(0).getPNAME().equals("라이츄")) {
 				System.out.print("1.채찍질  2.놀아주기  3.잠자기  4.포켓몬 상태 확인  5.최종배틀  [선택]>>");
 				input = sc.nextInt();
@@ -605,7 +584,15 @@ public class ActCon {
 			pconArt.Progo();
 			System.out.println();
 			System.out.print("1.회원가입  2.로그인   3.종료    [선택]>> ");
-			input = sc.nextInt();
+			
+		    try {
+		        input = sc.nextInt();
+		    } catch (InputMismatchException e) {
+		        // 정수가 아닌 입력을 받았을 경우 실행되는 블록
+		        System.out.println("잘못된 입력입니다. 숫자를 입력해주세요.");
+		        sc.nextLine(); // 입력 버퍼를 비워줍니다.
+		        continue; // 다시 while 루프의 처음으로 돌아갑니다.
+		    }
 
 			switch (input) {
 			case 1:
