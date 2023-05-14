@@ -34,15 +34,14 @@ public class BattleCon {
 
 	Scanner sc = new Scanner(System.in);
 	int input = 0;
-	
+
 	public void Battle(String id) {
 		t_pdto = pdao.state(id);
 		System.out.println("포켓몬 전투병기 뮤츠가 나타났다!");
 		pconArt.Mewt();
 		System.out.println("뮤츠의 HP : " + MD.getHp());
+		System.out.println("가라! " + t_pdto.get(0).getPNAME() + " 널 믿어");
 		while (true) {
-
-			System.out.println("가라! " + t_pdto.get(0).getPNAME() + " 널 믿어");
 
 			System.out.println("뮤츠가 공격했다!");
 
@@ -51,22 +50,8 @@ public class BattleCon {
 
 			System.out.println(MDAtk + "의 데미지를 입었습니다.");
 
-//			System.out.println("[ " + t_pdto.get(0).getPNAME() + " ]" + " 는 " + "[ " + t_pdto.get(0).getT_ID()
-//					+ " ] 를 슬프게 하지않기 위해 버텼다");
-
-			if (t_pdto.get(0).getPNAME().equals("라이츄")) {
-
-				pconArt.Raiatt();
-				System.out.println(t_pdto.get(0).getPNAME() + "의 혼신의 힘을 다한 공격!");
-			} else if (t_pdto.get(0).getPNAME().equals("님피아")) {
-				pconArt.Nimatt();
-				System.out.println(t_pdto.get(0).getPNAME() + "의 혼신의 힘을 다한 공격!");
-
-			} else if (t_pdto.get(0).getPNAME().equals("베이리프")) {
-				pconArt.Bayatt();
-				System.out.println(t_pdto.get(0).getPNAME() + "의 혼신의 힘을 다한 공격!");
-
-			}
+			System.out.println("[ " + t_pdto.get(0).getPNAME() + " ]" + " 는 " + "[ " + t_pdto.get(0).getT_ID()
+					+ " ] 를 슬프게 하지않기 위해 버텼다");
 
 			MD.setHp(MD.getHp() - t_pdto.get(0).getATK());
 
@@ -79,11 +64,11 @@ public class BattleCon {
 			} else if (MD.getHp() <= 0) {
 				System.out.println("승리하였습니다!");
 				System.out.println("뮤츠와의 배틀에서 승리하였습니다!");
-				if(t_pdto.get(0).getPNAME().equals("라이츄")) {
+				if (t_pdto.get(0).getPNAME().equals("라이츄")) {
 					pconArt.Raivic();
-				}else if(t_pdto.get(0).getPNAME().equals("님피아")) {
+				} else if (t_pdto.get(0).getPNAME().equals("님피아")) {
 					pconArt.Nimvic();
-				}else if(t_pdto.get(0).getPNAME().equals("베이리프")) {
+				} else if (t_pdto.get(0).getPNAME().equals("베이리프")) {
 					pconArt.Bayvic();
 				}
 				System.out.println("뮤츠와 친구가 되었다!" + "[ " + t_pdto.get(0).getT_ID() + " ]" + " 는 포켓몬마스터가 되었다");
@@ -93,6 +78,19 @@ public class BattleCon {
 				// 크레딧
 				pconAct.main();
 				break;
+			}
+			if (t_pdto.get(0).getPNAME().equals("라이츄")) {
+
+				pconArt.Raiatt();
+				System.out.println(t_pdto.get(0).getPNAME() + "의 혼신의 힘을 다한 공격!");
+			} else if (t_pdto.get(0).getPNAME().equals("님피아")) {
+				pconArt.Nimatt();
+				System.out.println(t_pdto.get(0).getPNAME() + "의 혼신의 힘을 다한 공격!");
+
+			} else if (t_pdto.get(0).getPNAME().equals("베이리프")) {
+				pconArt.Bayatt();
+				System.out.println(t_pdto.get(0).getPNAME() + "의 혼신의 힘을 다한 공격!");
+
 			}
 
 		}
