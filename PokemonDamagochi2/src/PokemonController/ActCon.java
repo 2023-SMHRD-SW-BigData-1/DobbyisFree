@@ -18,6 +18,13 @@ public class ActCon {
 	static PokemonController.MusicCon pconMusic = new PokemonController.MusicCon();
 	int input;
 
+	public void exitGame() {
+	    // 게임 종료 전에 해야 할 일들을 작성합니다.
+	    // ...
+
+	    System.exit(0); // JVM을 종료합니다.
+	}
+	
 	// 시작 시 프롤로그
 	public void Start() {
 		
@@ -155,6 +162,7 @@ public class ActCon {
 								case 1:
 									pdao.Sleep(id);
 									System.out.println("체력이 모두 회복 되었다 !");
+									System.out.println();
 									break;
 
 								case 2:
@@ -184,6 +192,7 @@ public class ActCon {
 
 								default:
 									System.out.println("잘못된 입력입니다. 다시 입력하세요.");
+									System.out.println();
 									break;
 								}
 							}
@@ -203,6 +212,7 @@ public class ActCon {
 								case 1:
 									pdao.Sleep(id);
 									System.out.println("체력이 모두 회복 되었다 !");
+									System.out.println();
 									break;
 
 								case 2:
@@ -232,6 +242,7 @@ public class ActCon {
 
 								default:
 									System.out.println("잘못된 입력입니다. 다시 입력하세요.");
+									System.out.println();
 									break;
 								}
 							}
@@ -251,6 +262,7 @@ public class ActCon {
 								case 1:
 									pdao.Sleep(id);
 									System.out.println("체력이 모두 회복 되었다 !");
+									System.out.println();
 									break;
 
 								case 2:
@@ -280,6 +292,7 @@ public class ActCon {
 
 								default:
 									System.out.println("잘못된 입력입니다. 다시 입력하세요.");
+									System.out.println();
 									break;
 								}
 							}
@@ -371,6 +384,7 @@ public class ActCon {
 								case 1:
 									pdao.Sleep(id);
 									System.out.println("체력이 모두 회복 되었다 !");
+									System.out.println();
 									break;
 									
 								case 2:
@@ -400,6 +414,7 @@ public class ActCon {
 									
 								default:
 									System.out.println("잘못된 입력입니다. 다시 입력하세요.");
+									System.out.println();
 									break;
 								}
 							}
@@ -419,6 +434,7 @@ public class ActCon {
 								case 1:
 									pdao.Sleep(id);
 									System.out.println("체력이 모두 회복 되었다 !");
+									System.out.println();
 									break;
 									
 								case 2:
@@ -448,6 +464,7 @@ public class ActCon {
 									
 								default:
 									System.out.println("잘못된 입력입니다. 다시 입력하세요.");
+									System.out.println();
 									break;
 								}
 							}
@@ -467,6 +484,7 @@ public class ActCon {
 								case 1:
 									pdao.Sleep(id);
 									System.out.println("체력이 모두 회복 되었다 !");
+									System.out.println();
 									break;
 									
 								case 2:
@@ -496,6 +514,7 @@ public class ActCon {
 									
 								default:
 									System.out.println("잘못된 입력입니다. 다시 입력하세요.");
+									System.out.println();
 									break;
 								}
 							}
@@ -586,10 +605,12 @@ public class ActCon {
 				break;
 			case 5:
 				System.out.println("배틀을 시작합니다.");
+				System.out.println();
 				pconBattle.Battle(id);
 
 			default:
-				System.out.println("잘못 입력하셨습니다.");
+				System.out.println("잘못 입력하셨습니다. 다시입력해주세요.");
+				System.out.println();
 				break;
 
 			}
@@ -603,6 +624,7 @@ public class ActCon {
 
 	// 메인페이지
 	public void main() {
+		pconMusic.S();
 		pconMusic.P(5);
 		int input = 0;
 
@@ -611,11 +633,13 @@ public class ActCon {
 			System.out.println();
 			System.out.print("1.회원가입  2.로그인   3.종료    [선택]>> ");
 			
+			
 		    try {
 		        input = sc.nextInt();
 		    } catch (InputMismatchException e) {
 		        // 정수가 아닌 입력을 받았을 경우 실행되는 블록
 		        System.out.println("잘못된 입력입니다. 숫자를 입력해주세요.");
+		        System.out.println();
 		        sc.nextLine(); // 입력 버퍼를 비워줍니다.
 		        continue; // 다시 while 루프의 처음으로 돌아갑니다.
 		    }
@@ -700,6 +724,7 @@ public class ActCon {
 				break;
 			case 3:
 				System.out.println("게임을 종료합니다.");
+				exitGame();
 				break;
 			default:
 				System.out.println("잘못된 입력입니다. 다시 입력해주세요.");
