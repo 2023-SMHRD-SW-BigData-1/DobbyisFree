@@ -98,7 +98,7 @@ public class ActCon {
 						pconArt.pikachae();
 						pdao.Whip(id);
 						System.out.println("===============================================");
-						System.out.println(t_pdto.get(0).getPNAME() + "는 트레이너를 위해 견뎌냈다! ");
+						System.out.println(t_pdto.get(0).getPNAME() + "은(는) 트레이너를 위해 견뎌냈다! ");
 						System.out.println("공격력이 올랐다! 경험치가 올랐다! 체력이 30 깎였다...");
 						System.out.println("===============================================");
 						System.out.println();
@@ -108,7 +108,7 @@ public class ActCon {
 						pdao.Whip(id);
 
 						System.out.println("===============================================");
-						System.out.println(t_pdto.get(0).getPNAME() + "는 트레이너를 위해 견뎌냈다! ");
+						System.out.println(t_pdto.get(0).getPNAME() + "은(는) 트레이너를 위해 견뎌냈다! ");
 						System.out.println("공격력이 올랐다! 경험치가 올랐다! 체력이 30 깎였다...");
 						System.out.println("===============================================");
 
@@ -119,7 +119,7 @@ public class ActCon {
 						pdao.Whip(id);
 
 						System.out.println("===============================================");
-						System.out.println(t_pdto.get(0).getPNAME() + "는 트레이너를 위해 견뎌냈다! ");
+						System.out.println(t_pdto.get(0).getPNAME() + "은(는) 트레이너를 위해 견뎌냈다! ");
 						System.out.println("공격력이 올랐다! 경험치가 올랐다! 체력이 30 깎였다...");
 						System.out.println("===============================================");
 
@@ -507,7 +507,7 @@ public class ActCon {
 				if (t_pdto.get(0).getPNAME().equals("피카츄")) {
 					pconArt.pikasleep();
 					System.out.println("===============================================");
-					System.out.println("우리 [ " + t_pdto.get(0).getPNAME() + " ]는 자는 모습이 제일 귀엽당><");
+					System.out.println("우리 [ " + t_pdto.get(0).getPNAME() + " ]은(는) 자는 모습이 제일 귀엽당><");
 					System.out.println("체력이 전부 회복되었다! 경험치가 올랐다!");
 					System.out.println("===============================================");
 					System.out.println();
@@ -515,7 +515,7 @@ public class ActCon {
 				} else if (t_pdto.get(0).getPNAME().equals("이브이")) {
 					pconArt.Eeveesleep();
 					System.out.println("===============================================");
-					System.out.println("우리 [ " + t_pdto.get(0).getPNAME() + " ]는 자는 모습이 제일 귀엽당><");
+					System.out.println("우리 [ " + t_pdto.get(0).getPNAME() + " ]은(는) 자는 모습이 제일 귀엽당><");
 					System.out.println("체력이 전부 회복되었다! 경험치가 올랐다!");
 					System.out.println("===============================================");
 					System.out.println();
@@ -523,7 +523,7 @@ public class ActCon {
 				} else if (t_pdto.get(0).getPNAME().equals("치코리타")) {
 					pconArt.Chikosleep();
 					System.out.println("===============================================");
-					System.out.println("우리 [ " + t_pdto.get(0).getPNAME() + " ]는 자는 모습이 제일 귀엽당><");
+					System.out.println("우리 [ " + t_pdto.get(0).getPNAME() + " ]은(는) 자는 모습이 제일 귀엽당><");
 					System.out.println("체력이 전부 회복되었다! 경험치가 올랐다!");
 					System.out.println("===============================================");
 					System.out.println();
@@ -532,7 +532,7 @@ public class ActCon {
 				if (t_pdto.get(0).getPNAME().equals("라이츄")) {
 					System.out.println();
 					System.out.println("===============================================");
-					System.out.println("우리 [ " + t_pdto.get(0).getPNAME() + " ]는 자는 모습이 제일 귀엽당><");
+					System.out.println("우리 [ " + t_pdto.get(0).getPNAME() + " ]은(는) 자는 모습이 제일 귀엽당><");
 					System.out.println("체력이 전부 회복되었다! 경험치가 올랐다!");
 					System.out.println("===============================================");
 					System.out.println();
@@ -540,7 +540,7 @@ public class ActCon {
 				} else if (t_pdto.get(0).getPNAME().equals("님피아")) {
 					System.out.println();
 					System.out.println("===============================================");
-					System.out.println("우리 [ " + t_pdto.get(0).getPNAME() + " ]는 자는 모습이 제일 귀엽당><");
+					System.out.println("우리 [ " + t_pdto.get(0).getPNAME() + " ]은(는) 자는 모습이 제일 귀엽당><");
 					System.out.println("체력이 전부 회복되었다! 경험치가 올랐다!");
 					System.out.println("===============================================");
 					System.out.println();
@@ -548,7 +548,7 @@ public class ActCon {
 				} else if (t_pdto.get(0).getPNAME().equals("베이리프")) {
 					System.out.println();
 					System.out.println("===============================================");
-					System.out.println("우리 [ " + t_pdto.get(0).getPNAME() + " ]는 자는 모습이 제일 귀엽당><");
+					System.out.println("우리 [ " + t_pdto.get(0).getPNAME() + " ]은(는) 자는 모습이 제일 귀엽당><");
 					System.out.println("체력이 전부 회복되었다! 경험치가 올랐다!");
 					System.out.println("===============================================");
 					System.out.println();
@@ -579,7 +579,7 @@ public class ActCon {
 				}
 				break;
 			case 5:
-				System.out.println("배틀로 진입합니다.");
+				System.out.println("배틀을 시작합니다.");
 				pconBattle.Battle(id);
 
 			default:
@@ -672,9 +672,9 @@ public class ActCon {
 				break;
 			case 2:
 				System.out.println("로그인 선택하셨습니다.");
-				System.out.print("이름 입력 > ");
+				System.out.print("이름 입력 >> ");
 				id = sc.next();
-				System.out.print("비밀번호 입력 > ");
+				System.out.print("비밀번호 입력 >> ");
 				pw = sc.next();
 				// 로그인 DB 가져오는 메소드 (SELECT)
 				TrainerDTO t_pdto = pdao.login(id, pw);
@@ -687,6 +687,7 @@ public class ActCon {
 
 				} else {
 					System.out.println("로그인 정보를 다시 확인해주세요. 메인화면으로 이동합니다.");
+					System.out.println();
 				}
 				break;
 			case 3:
