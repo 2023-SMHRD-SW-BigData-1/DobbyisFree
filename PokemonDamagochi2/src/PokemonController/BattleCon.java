@@ -30,12 +30,14 @@ public class BattleCon {
 	MuzDTO MD = new MuzDTO();
 	static PokemonController.ActCon pconAct = new PokemonController.ActCon();
 	static PokemonController.AsciiArt pconArt = new PokemonController.AsciiArt();
+	static PokemonController.MusicCon pconMusic = new PokemonController.MusicCon();
 	// 배틀기능
 
 	Scanner sc = new Scanner(System.in);
 	int input = 0;
 
 	public void Battle(String id) {
+		pconMusic.P(3);
 		t_pdto = pdao.state(id);
 		System.out.println("포켓몬 전투병기 [ 뮤츠 ]가 나타났다!");
 		pconArt.Mewt();
@@ -58,12 +60,14 @@ public class BattleCon {
 			System.out.println("=========================================================");
 
 			if (t_pdto.get(0).getHP() <= 0) {
+				pconMusic.P(0);
 				System.out.println("패배하였습니다... 채찍질이 부족한 것 같다");
 				System.out.println("아무키나 입력하시면 메인으로 이동합니다.");
 				String input1 = sc.next();
 				pconAct.main();
 				break;
 			} else if (MD.getHp() <= 0) {
+				pconMusic.P(1);
 				System.out.println("승리하였습니다!");
 				System.out.println("[ 뮤츠 ]와의 배틀에서 승리하였습니다!");
 				if (t_pdto.get(0).getPNAME().equals("라이츄")) {
@@ -78,6 +82,7 @@ public class BattleCon {
 				System.out.println("아무키나 입력하시면 메인으로 이동합니다.");
 				String input1 = sc.next();
 				// 크레딧
+				pconMusic.P(7);
 				pconAct.main();
 				break;
 			}

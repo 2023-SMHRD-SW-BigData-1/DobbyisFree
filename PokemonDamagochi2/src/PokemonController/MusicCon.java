@@ -21,7 +21,7 @@ public class MusicCon {
 	        musiclist.add(new MusicDTO(mpath + "TheEnd.mp3"));
 	    }
 
-	    public MusicDTO P() {
+	    public MusicDTO P(int i) {
 	        if(mp.isPlaying()) {
 	            mp.stop();
 	        }

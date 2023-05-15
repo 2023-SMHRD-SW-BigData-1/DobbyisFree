@@ -15,10 +15,12 @@ public class ActCon {
 	ArrayList<PokemonDTO> t_pdto = new ArrayList<PokemonDTO>();
 	static PokemonController.AsciiArt pconArt = new PokemonController.AsciiArt();
 	static PokemonController.BattleCon pconBattle = new PokemonController.BattleCon();
+	static PokemonController.MusicCon pconMusic = new PokemonController.MusicCon();
 	int input;
 
 	// 시작 시 프롤로그
 	public void Start() {
+		
 		try {
 			for (int i = 0; i < 1; i++) {
 
@@ -49,7 +51,9 @@ public class ActCon {
 	
 
 	public void act(String id) {
+		pconMusic.P(6);
 		while (true) {
+			
 			t_pdto = pdao.state(id); //진화한 애들을 가진 트레이너 로그인시 선택지 추가함
 			if (t_pdto.get(0).getPNAME().equals("라이츄")) {
 				System.out.print("1.채찍질  2.놀아주기  3.잠자기  4.포켓몬 상태 확인  5.최종배틀  [선택]>>");
@@ -132,6 +136,7 @@ public class ActCon {
 						// 진화 메소드 실행 (스토리용 출력문 있어야함)
 						// 만약 노래가 재생중이라면 노래를 멈추고 진화 노래를 시작한다
 
+						pconMusic.P(2);
 						System.out.println("오잉?! [ " + t_pdto.get(0).getPNAME() + " ]의 상태가?");
 
 						if (t_pdto.get(0).getPNAME().equals("피카츄")) {
@@ -348,6 +353,7 @@ public class ActCon {
 						// 진화 메소드 실행 (스토리용 출력문 있어야함)
 						// 만약 노래가 재생중이라면 노래를 멈추고 진화 노래를 시작한다
 
+						pconMusic.P(2);
 						System.out.println("오잉?! [ " + t_pdto.get(0).getPNAME() + " ]의 상태가?");
 
 						if (t_pdto.get(0).getPNAME().equals("피카츄")) {
@@ -597,6 +603,7 @@ public class ActCon {
 
 	// 메인페이지
 	public void main() {
+		pconMusic.P(5);
 		int input = 0;
 
 		while (input != 3) {
@@ -671,6 +678,7 @@ public class ActCon {
 
 				break;
 			case 2:
+				pconMusic.P(7);
 				System.out.println("로그인 선택하셨습니다.");
 				System.out.print("이름 입력 >> ");
 				id = sc.next();
