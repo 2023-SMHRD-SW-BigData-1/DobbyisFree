@@ -553,7 +553,7 @@ public class ActCon {
 						System.out.printf("%5s\t%4s\t%4s\t%4s\t%4s\t%4s\n", "트레이너명", "HP", "ATK", "LOVE", "EXP",
 								"포켓몬이름");
 
-						System.out.printf("%52s\t%4d\t%4d\t%4d\t%4d\t%4s\n", pdto.getT_ID(), pdto.getHP(), pdto.getATK(),
+						System.out.printf("%5s\t%4d\t%4d\t%4d\t%4d\t%4s\n", pdto.getT_ID(), pdto.getHP(), pdto.getATK(),
 								pdto.getLOVE(), pdto.getEXP(), pdto.getPNAME());
 						System.out.println("========================================================");
 					}
