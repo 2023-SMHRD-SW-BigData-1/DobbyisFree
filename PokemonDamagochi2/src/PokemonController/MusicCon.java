@@ -10,7 +10,7 @@ public class MusicCon {
 	    ArrayList<MusicDTO> musiclist = new ArrayList<MusicDTO>();
 	    int i = 0;
 	    public MusicCon() {
-	        String mpath = "C:\\Users\\smhrd\\Desktop\\Dmusic\\";
+	        String mpath = "C:\\Users\\SMHRDH\\Desktop\\Dmusic\\";
 	        musiclist.add(new MusicDTO(mpath + "BattleLose.mp3"));
 	        musiclist.add(new MusicDTO(mpath + "BattleWin.mp3"));
 	        musiclist.add(new MusicDTO(mpath + "Evolution.mp3"));
