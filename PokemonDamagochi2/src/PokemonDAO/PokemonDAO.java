@@ -258,8 +258,10 @@ public class PokemonDAO {
 			psmt.executeUpdate();
 
 		} catch (SQLException e) {
-
+			System.out.println("중복된 닉네임 입니다. 회원가입을 다시 진행해주세요..");
+			pcon.main();
 			e.printStackTrace();
+			
 		} finally {
 			getClose();
 

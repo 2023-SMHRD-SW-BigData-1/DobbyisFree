@@ -158,10 +158,10 @@ public class ActCon {
 										if (pdto.getT_ID().equals(id)) {
 											System.out.println(
 													"========================================================");
-											System.out.printf("%4s\t%4s\t%4s\t%5s\t%5s\t%3s\n", "트레이너명", "HP", "ATK",
+											System.out.printf("%5s\t%4s\t%4s\t%4s\t%4s\t%4s\n", "트레이너명", "HP", "ATK",
 													"LOVE", "EXP", "포켓몬이름");
 
-											System.out.printf("%4s\t%4d\t%4d\t%4d\t%4d\t%4s\n", pdto.getT_ID(),
+											System.out.printf("%5s\t%4d\t%4d\t%4d\t%4d\t%4s\n", pdto.getT_ID(),
 													pdto.getHP(), pdto.getATK(), pdto.getLOVE(), pdto.getEXP(),
 													pdto.getPNAME());
 											System.out.println(
@@ -205,10 +205,10 @@ public class ActCon {
 										if (pdto.getT_ID().equals(id)) {
 											System.out.println(
 													"========================================================");
-											System.out.printf("%4s\t%4s\t%4s\t%5s\t%5s\t%3s\n", "트레이너명", "HP", "ATK",
+											System.out.printf("%5s\t%4s\t%4s\t%4s\t%4s\t%4s\n", "트레이너명", "HP", "ATK",
 													"LOVE", "EXP", "포켓몬이름");
 
-											System.out.printf("%4s\t%4d\t%4d\t%4d\t%4d\t%4s\n", pdto.getT_ID(),
+											System.out.printf("%5s\t%4d\t%4d\t%4d\t%4d\t%4s\n", pdto.getT_ID(),
 													pdto.getHP(), pdto.getATK(), pdto.getLOVE(), pdto.getEXP(),
 													pdto.getPNAME());
 											System.out.println(
@@ -252,10 +252,10 @@ public class ActCon {
 										if (pdto.getT_ID().equals(id)) {
 											System.out.println(
 													"========================================================");
-											System.out.printf("%4s\t%4s\t%4s\t%5s\t%5s\t%3s\n", "트레이너명", "HP", "ATK",
+											System.out.printf("%5s\t%4s\t%4s\t%4s\t%4s\t%4s\n", "트레이너명", "HP", "ATK",
 													"LOVE", "EXP", "포켓몬이름");
 
-											System.out.printf("%4s\t%4d\t%4d\t%4d\t%4d\t%4s\n", pdto.getT_ID(),
+											System.out.printf("%5s\t%4d\t%4d\t%4d\t%4d\t%4s\n", pdto.getT_ID(),
 													pdto.getHP(), pdto.getATK(), pdto.getLOVE(), pdto.getEXP(),
 													pdto.getPNAME());
 											System.out.println(
@@ -369,10 +369,10 @@ public class ActCon {
 									for (PokemonDTO pdto : t_pdto) {
 										if (pdto.getT_ID().equals(id)) {
 											System.out.println("========================================================");
-											System.out.printf("%4s\t%4s\t%4s\t%5s\t%5s\t%3s\n", "트레이너명", "HP", "ATK", "LOVE", "EXP",
+											System.out.printf("%5s\t%4s\t%4s\t%4s\t%4s\t%4s\n", "트레이너명", "HP", "ATK", "LOVE", "EXP",
 													"포켓몬이름");
 
-											System.out.printf("%4s\t%4d\t%4d\t%4d\t%4d\t%4s\n", pdto.getT_ID(), pdto.getHP(), pdto.getATK(),
+											System.out.printf("%5s\t%4d\t%4d\t%4d\t%4d\t%4s\n", pdto.getT_ID(), pdto.getHP(), pdto.getATK(),
 													pdto.getLOVE(), pdto.getEXP(), pdto.getPNAME());
 											System.out.println("========================================================");
 										}
@@ -413,10 +413,10 @@ public class ActCon {
 									for (PokemonDTO pdto : t_pdto) {
 										if (pdto.getT_ID().equals(id)) {
 											System.out.println("========================================================");
-											System.out.printf("%4s\t%4s\t%4s\t%5s\t%5s\t%3s\n", "트레이너명", "HP", "ATK", "LOVE", "EXP",
+											System.out.printf("%5s\t%4s\t%4s\t%4s\t%4s\t%4s\n", "트레이너명", "HP", "ATK", "LOVE", "EXP",
 													"포켓몬이름");
 
-											System.out.printf("%4s\t%4d\t%4d\t%4d\t%4d\t%4s\n", pdto.getT_ID(), pdto.getHP(), pdto.getATK(),
+											System.out.printf("%5s\t%4d\t%4d\t%4d\t%4d\t%4s\n", pdto.getT_ID(), pdto.getHP(), pdto.getATK(),
 													pdto.getLOVE(), pdto.getEXP(), pdto.getPNAME());
 											System.out.println("========================================================");
 										}
@@ -457,10 +457,10 @@ public class ActCon {
 									for (PokemonDTO pdto : t_pdto) {
 										if (pdto.getT_ID().equals(id)) {
 											System.out.println("========================================================");
-											System.out.printf("%4s\t%4s\t%4s\t%5s\t%5s\t%3s\n", "트레이너명", "HP", "ATK", "LOVE", "EXP",
+											System.out.printf("%5s\t%4s\t%4s\t%4s\t%4s\t%4s\n", "트레이너명", "HP", "ATK", "LOVE", "EXP",
 													"포켓몬이름");
 
-											System.out.printf("%4s\t%4d\t%4d\t%4d\t%4d\t%4s\n", pdto.getT_ID(), pdto.getHP(), pdto.getATK(),
+											System.out.printf("%5s\t%4d\t%4d\t%4d\t%4d\t%4s\n", pdto.getT_ID(), pdto.getHP(), pdto.getATK(),
 													pdto.getLOVE(), pdto.getEXP(), pdto.getPNAME());
 											System.out.println("========================================================");
 										}
@@ -550,10 +550,10 @@ public class ActCon {
 				for (PokemonDTO pdto : t_pdto) {
 					if (pdto.getT_ID().equals(id)) {
 						System.out.println("========================================================");
-						System.out.printf("%4s\t%4s\t%4s\t%5s\t%5s\t%3s\n", "트레이너명", "HP", "ATK", "LOVE", "EXP",
+						System.out.printf("%5s\t%4s\t%4s\t%4s\t%4s\t%4s\n", "트레이너명", "HP", "ATK", "LOVE", "EXP",
 								"포켓몬이름");
 
-						System.out.printf("%4s\t%4d\t%4d\t%4d\t%4d\t%4s\n", pdto.getT_ID(), pdto.getHP(), pdto.getATK(),
+						System.out.printf("%52s\t%4d\t%4d\t%4d\t%4d\t%4s\n", pdto.getT_ID(), pdto.getHP(), pdto.getATK(),
 								pdto.getLOVE(), pdto.getEXP(), pdto.getPNAME());
 						System.out.println("========================================================");
 					}
