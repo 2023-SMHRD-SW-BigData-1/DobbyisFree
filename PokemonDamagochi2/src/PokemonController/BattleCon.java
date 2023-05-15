@@ -9,7 +9,7 @@ import PokemonDTO.MuzDTO;
 import PokemonDTO.PokemonDTO;
 
 public class BattleCon {
-
+	MusicCon MP = new MusicCon();
 	// 고정값 뮤츠 개체 만들어야함
 	// HP150 ATK 20~50중에 랜덤수
 
